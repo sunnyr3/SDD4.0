@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:12.2.0-alpine
 
 # Set working directory
 WORKDIR /client
