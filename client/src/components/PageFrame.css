@@ -1,0 +1,10 @@
+.page-frame-container {
+    text-align: center;
+    margin-top: 5rem;
+    min-height: 70vh;
+}
+
+.page-footer {
+    text-align: center;
+    margin-bottom: 16px;
+}
