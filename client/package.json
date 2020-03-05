@@ -11,7 +11,8 @@
     "react-scripts": "3.4.0",
     "react-router-dom": "^4.3.1",
     "react-bootstrap": "^1.0.0-beta.16",
-    "reactstrap": "^7.1.0"
+    "reactstrap": "^7.1.0",
+    "handtrackjs": "0.0.13"
   },
   "scripts": {
     "start": "react-scripts start",
