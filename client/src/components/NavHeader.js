@@ -45,7 +45,7 @@ export const NavHeader = () => {
                     <Link className="nav-link" to={"/"}>Home</Link>
                 </li>
                 <li className="nav-item active">
-                    <Link className="nav-link" to={"/"}>Tutorials</Link>
+                    <Link className="nav-link" to={"/TutorialPage"}>Tutorials</Link>
                 </li>
                 <li className="nav-item active">
                     <a className="nav-link" href="https://github.com/sunnyr3/SDD4.0">GitHub</a>
