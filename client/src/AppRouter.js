@@ -9,6 +9,7 @@ class AppRouter extends Component {
                 <div>
                     <Switch>
                         <Route exact path="/" component={MainPage} />
+                        <Route exactly component={TutorialPage} pattern="/TutorialPage" />
                     </Switch>
                 </div>
             </Router>
