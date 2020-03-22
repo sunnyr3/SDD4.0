@@ -10,7 +10,7 @@ class AppRouter extends Component {
                 <div>
                     <Switch>
                         <Route exact path="/" component={MainPage} />
-                        <Route exactly component={TutorialPage} pattern="/TutorialPage" />
+                        <Route path="/TutorialPage" component={TutorialPage} />
                     </Switch>
                 </div>
             </Router>
