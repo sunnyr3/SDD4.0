@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import { Container, Col, Spinner, Row } from 'reactstrap';
+import { Container} from 'reactstrap';
 import PageFrame from './PageFrame';
 
-import './TutotialPage.css';
+import './TutorialPage.css';
 
 
-render() {
-
-	return(
-<div>
-       <p> Welcome to tutorialpage </p>
-</div>
-)
+class TutorialPage extends Component {
+    render() {
+      return(
+        <PageFrame>
+            <Container>
+                <div>
+                    <p> Welcome to TutorialPage</p>
+                </div>
+            </Container>
+        </PageFrame>
+      );
+    }
 }
+
+export default TutorialPage
