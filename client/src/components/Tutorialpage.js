@@ -5,11 +5,18 @@ import PageFrame from './PageFrame';
 import './TutotialPage.css';
 
 
-render() {
-
-	return(
-<div>
-       <p> Welcome to tutorialpage </p>
-</div>
-)
+class TutorialPage extends Component {
+    render() {
+      return(
+        <PageFrame>
+            <Container>
+                <div>
+                    <p> Welcome to TutorialPage</p>
+                </div>
+            </Container>
+        </PageFrame>
+      );
+    }
 }
+
+export default TutorialPage
