@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Col, Spinner, Row } from 'reactstrap';
+import { Container} from 'reactstrap';
 import PageFrame from './PageFrame';
 
-import './TutotialPage.css';
+import './TutorialPage.css';
 
 
 class TutorialPage extends Component {
