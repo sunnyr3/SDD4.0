@@ -1,0 +1,39 @@
+.navbar {
+    background-color: #0378A3;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.title-link {
+    text-decoration: none;
+    margin: 0;
+}
+
+.nav-item .nav-link {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-item .nav-link:hover {
+    background-color: #005a7a;
+}
+
+.app-title {
+    display: inline-flex;
+}
+
+.app-title h6 {
+    font-size: 20px;
+    margin: 5px;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    color: white;
+}
+
+.app-logo {
+    height: 43px;
+    width: 43px;
+}
