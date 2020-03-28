@@ -21,15 +21,11 @@ class Card extends Component {
       this.props.nextCard();
     }
   
-
     render() {
-
       return (
         //popup the window of flashcard
         <Popup>
-
           <div className = "card-container">
-
               //close buttom on top
               </div className = "button-close">
                   <button className="button" onClick={() => {console.log("modal closed ");
