@@ -26,8 +26,7 @@ class Card extends Component {
         //popup the window of flashcard
         <Popup>
           <div className = "card-container">
-              //close buttom on top
-              </div className = "button-close">
+              <div className="button-close">
                   <button className="button" onClick={() => {console.log("modal closed ");
                   close(); }}>
                   close
@@ -69,4 +68,4 @@ class Card extends Component {
     }
 }
 
-export default Card
+export default Card;

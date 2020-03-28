@@ -7,41 +7,47 @@ import Card from './Card';
 class Fcards extends Component{
      
     constructor(props){
+		super(props);
 		this.state = {
- 			isView: false
- 			isPractice: false
- 			pop: falses
- 			cards = [
- 			{id = 1, eng = "one", img = one.jpg}
- 			{id = 2, eng = "two", img = two.jpg}
- 			{id = 3, eng = "three", img = three.jpg}]
- 			currentCard{}
+ 			isView: false,
+ 			isPractice: false,
+ 			pop: false,
+ 			cards: [
+ 				{id: 1, eng: "one", img: one.jpg},
+ 				{id: 2, eng: "two", img: two.jpg},
+				 {id: 3, eng: "three", img: three.jpg}
+			],
+ 			//currentCard{}
 		};
 	}
 
 	viewToggle = () =>{
-		this.setState({isView: !this.state.isView})
-		this.setState({pop: !this.state.pop})
-	};
+		this.setState({
+			isView: !this.state.isView,
+			pop: !this.state.pop
+		});
+	}
 
 	practiceToggle = () =>{
-		this.setState({isPractice: !this.state.isPractice})
-		this.setState({pop: !this.state.pop})
-	};
+		this.setState({
+			isPractice: !this.state.isPractice,
+			pop: !this.state.pop
+		});
+	}
 
 	prevCard(){
-		const allcards = this.state.cards
+		const allcards = this.state.cards;
 		this.setState({
 			currentCard: ......prev iterate card in allcards
-		})
+		});
 
 	}
 
 	nextCard(){
-		const allcards = this.state.cards
+		const allcards = this.state.cards;
 		this.setState({
 			currentCard: ......next iterate card in allcards
-		})
+		});
 
 	}
 
@@ -87,3 +93,5 @@ class Fcards extends Component{
 	}
 
 }
+
+export default Fcards;

@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
 
 # Links for each sign language picture to online image server
-signs = {
+numbers = {
     '1': 'https://i.ibb.co/R40rKGC/1.jpg',
     '2': 'https://i.ibb.co/HNLRcDw/2.jpg',
     '3': 'https://i.ibb.co/W27Gr39/3.jpg',
@@ -14,6 +14,9 @@ signs = {
     '7': 'https://i.ibb.co/wC33gFc/7.jpg',
     '8': 'https://i.ibb.co/jv3Lkmp/8.jpg',
     '9': 'https://i.ibb.co/tcGzdYc/9.jpg',
+}
+
+alphabets = {
     'a': 'https://i.ibb.co/TLkkghg/A.png',
     'b': 'https://i.ibb.co/BNsLzvS/B.png',
     'c': 'https://i.ibb.co/fGKzr5F/C.png',
@@ -46,7 +49,10 @@ signs = {
 @renderer_classes([JSONRenderer, ])
 def get_tutorial(request):
     """ API Endpoint for tutorial """
-    return Response(signs)
+    return Response({
+        'numbers': numbers,
+        'alphabets': alphabets
+    })
 
 @api_view(['POST'])
 @renderer_classes([JSONRenderer, ])
@@ -56,7 +62,11 @@ def search(request):
     searchkey = searchkey.lower()
     res = []
     for c in searchkey:
-        temp = {c: signs[c]}
-        res.append(temp)
+        if c in numbers:
+            temp = {c: numbers[c]}
+            res.append(temp)
+        else:
+            temp = {c: alphabets[c]}
+            res.append(temp)
 
     return Response(res)

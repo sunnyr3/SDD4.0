@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from rest_framework.urlpatterns import format_suffix_patterns
 from django.contrib import admin
 from django.urls import path
 from api.views import get_tutorial, search
@@ -22,3 +23,5 @@ urlpatterns = [
     url(r'^tutorial/$', get_tutorial),
     url(r'^search/$', search),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'api'])

@@ -11,7 +11,7 @@ class AppRouter extends Component {
                 <div>
                     <Switch>
                         <Route exact path="/" component={Webcam} />
-                        <Route exact path="/TutorialPage" component={TutorialPage} />
+                        <Route exact path="/tutorial" component={TutorialPage} />
                     </Switch>
                 </div>
             </Router>
