@@ -1,11 +1,16 @@
 
+
 import React, { Component } from 'react';
 import { Container} from 'reactstrap';
+
+
+
 import './Fcards.css';
 import Card from './Card';
 class Fcards extends Component{
      
     constructor(props){
+
 		super(props);
 		this.state = {
  			isView: false,
@@ -40,9 +45,11 @@ class Fcards extends Component{
 			currentCard: ......prev iterate card in allcards
 		});
 
+
 	}
 
 	nextCard(){
+
 		const allcards = this.state.cards;
 		this.setState({
 			currentCard: ......next iterate card in allcards
@@ -55,36 +62,43 @@ class Fcards extends Component{
 		return(
 
 			<div className = "folder">
+
 				//print out the name of the folder on folder
                	<div className = "foler-box"> {this.state.name}
                 	<div className = "view-div" onClick = {this.viewToggle}>
+
 						<button type = "button" >
 							view
 						</button>
 					</div>
-					{this.state.isView ? <Card toggle={this.practiceToggle} /> : null}
+
+					{this.state.isView ? <Card toggle={this.practiceToggle} 
+                	eng = {this.state.currentCard.eng} 
+                	img = {this.state.currentCard.img}/> : null}
+
 
 					<div className = "prac-div" onClick = {this.practiceToggle}>
 						<button type = "button" className = "practice">
 				 			practice
 						</button>
 					</div>
+
                 	{this.state.isPractice ? <Card toggle={this.practiceToggle} 
                 	eng = {this.state.currentCard.eng} 
-                	img = {}/> : null}  
+                	img = {this.state.currentCard.img}/> : null}
 
-   			 	</div>
+               	</div>
 
    			</div>
 
 		);
-
-
 
 	}
 
 }
 
 
+
 export default Fcards;
+
 

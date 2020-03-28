@@ -21,17 +21,28 @@ class Card extends Component {
       this.props.nextCard();
     }
   
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78b1fc23c46d172febbd86752b560f8cb09bd34c
     render() {
       return (
         //popup the window of flashcard
         <Popup>
           <div className = "card-container">
+<<<<<<< HEAD
               <div className="button-close">
 
                   <button className="button" onClick={() => {console.log("modal closed ");
                   close(); }}>
                     close
+=======
+              //close buttom on top
+              </div className = "button-close">
+                  <button className="button" onClick={() => {console.log("modal closed ");
+                  close(); }}>
+                  close
+>>>>>>> 78b1fc23c46d172febbd86752b560f8cb09bd34c
                   </button>
               </div>
 
@@ -70,5 +81,9 @@ class Card extends Component {
     }
 }
 
+<<<<<<< HEAD
 export default Card;
 
+=======
+export default Card
+>>>>>>> 78b1fc23c46d172febbd86752b560f8cb09bd34c
