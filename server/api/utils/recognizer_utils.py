@@ -23,7 +23,6 @@ def drawBoxOfROI(scores_roi, boxes_roi, padding_ratio,
         padding_y = padding_ratio * (bottom - top)
         margin_x = margin_ratio * (right - left)
         margin_y = margin_ratio * (bottom - top)
-        # 越界处理
         padding_left = max(int(left - padding_x), 0)
         padding_top = max(int(top - padding_y), 0)
         padding_right = min(int(right + padding_x), im_width - 1)

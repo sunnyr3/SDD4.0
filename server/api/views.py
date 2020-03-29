@@ -143,27 +143,15 @@ def get_classifier(request):
         print(request.POST)
         img_uri = str(request.POST.getlist("uri")[0])
         frame = data_uri_to_cv2_img(img_uri)
-        #frame = cv2.imread('img path')
-        tic = time.time()
         if get_bbox(frame):
 
             crop_res = cv2.resize(frame, (boxsize, boxsize))
             img, pad = preprocess(crop_res, boxsize, stride)
 
-            tic = time.time()
             hm = estimator.predict(img)
-            dt = time.time() - tic
 
             hm = cv2.resize(hm, (0, 0), fx=stride, fy=stride)
             bg = cv2.normalize(hm[:, :, -1], None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8UC1)
-            viz = cv2.normalize(np.sum(hm[:, :, :-1], axis=2), None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8UC1)
-
-            if generating_dataset:
-                cv2.imwrite('cust_data/{}/{}.jpg'.format(letter, idx), bg)
-                print(idx)
-
-            cv2.imwrite('msk/test/{}.jpg'.format(idx), bg)
-            cv2.imwrite('ori/test/{}.jpg'.format(idx), crop_res)
 
             im = cv2.cvtColor(bg, cv2.COLOR_GRAY2BGR)
             im = cv2.resize(im, (100, 100))
@@ -171,16 +159,9 @@ def get_classifier(request):
             result = rec_model.predict(im)
             # Gives the result
             result_letter = map_characters[np.argmax(result[0])]
-            frame = cv2.putText(frame, str(result_letter) + ' FPS:{}'.format(int(1/dt)), (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255), 1)
 
-            idx += 1
             return Response({'content': str(result_letter)})
         else:
-            bg = np.zeros((224, 224), np.int8)
-            viz = np.zeros((224, 224), np.int8)
-            viz.fill(255)
-            dt = time.time() - tic
-            frame = cv2.putText(frame, 'MOVE HAND TO CENTER PLEASE FPS:{}'.format(int(1/dt)), (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 0), 1)
             return Response({'content': 'Please move hand to the center'})
 
     return Response()

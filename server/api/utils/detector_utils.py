@@ -14,12 +14,11 @@ from . import label_map_util
 # # score threshold for showing bounding boxes.
 # _score_thresh = 0.27
 
-MODEL_NAME = 'hand_inference_graph'
 # Path to frozen detection graph.
 # This is the actual model that is used for the object detection.
-PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph_2.pb'
+PATH_TO_CKPT = '/api/hand_inference_graph/frozen_inference_graph_2.pb'
 # List of the strings that is used to add correct label for each box.
-PATH_TO_LABELS = os.path.join(MODEL_NAME, 'hand_label_map.pbtxt')
+PATH_TO_LABELS = '/api/hand_inference_graph/hand_label_map.pbtxt'
 
 NUM_CLASSES = 1
 # load label map
@@ -50,7 +49,6 @@ def load_inference_graph():
 # You can modify this to also draw a label.
 def draw_box_on_image(num_hands_detect, score_thresh,
                       scores, boxes, im_width, im_height, image_np):
-    # 存储检测到的矩形框和得分
     boxes_ret = []
     scores_ret = []
     for i in range(num_hands_detect):
@@ -61,13 +59,6 @@ def draw_box_on_image(num_hands_detect, score_thresh,
                                           boxes[i][2] * im_height)
             boxes_ret.append((left, right, top, bottom))
             scores_ret.append(scores[i])
-            p1 = (int(left), int(top))
-            p2 = (int(right), int(bottom))
-            # cv2.rectangle(image_np, p1, p2, (77, 255, 9), 2, 1)  # 矩形框出手部
-            # cv2.putText(image_np, str(float('%.2f' % scores[i])),
-            #             (int(left), int(top)-1),
-            #             cv2.FONT_HERSHEY_SIMPLEX, 0.75,
-            #             (77, 255, 9), 2)  # 显示得分
     return boxes_ret, scores_ret
 
 
