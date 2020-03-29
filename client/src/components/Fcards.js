@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Container} from 'reactstrap';
+//import { Container} from 'reactstrap';
 
 import './Fcards.css';
 import Card from './Card';
@@ -10,9 +10,9 @@ class Fcards extends Component{
 
 		super(props);
 		this.state = {
-			pop = false;
+			pop: false,
  			isPractice: false,
- 			currentCard: 0
+ 			currentCard: 0,
  			cards: undefined,
  			key: undefined
 		};
@@ -33,14 +33,14 @@ class Fcards extends Component{
 		this.setState({
 			pop: !this.state.pop,
 			isPractice: !this.state.isPractice,
-			cards: this.props.cards
+			cards: this.props.cards,
 			key: Object.keys(this.state.cards)[this.state.currentCard]
 		});
 
 	}
 
 	prevCard() {
-		const index = this.state.currentCard;
+		var index = this.state.currentCard;
     	if (index > 0) {
             index--;
         }
@@ -48,16 +48,16 @@ class Fcards extends Component{
       		currentCard: index,
       		key: Object.keys(this.state.cards)[this.state.currentCard]
     	});
-    	<Card  />
 	}
 
 	nextCard() {
-    	const index = this.state.currentCard;
-    	if (currentCard < cards.prototype.size - 1) {
+        var index = this.state.currentCard;
+    	const length = this.state.cards.prototype.size;
+    	if (index < length - 1) {
             index++;
          }
     	this.setState({
-      		currentCard: index
+      		currentCard: index,
       		key: Object.keys(this.state.cards)[this.state.currentCard]
     	});
 
@@ -68,7 +68,6 @@ class Fcards extends Component{
 		return(
 
 			<div className = "folder">
-
 				//print out the name of the folder on folder
                	<div className = "foler-box"> {this.state.name}
 
@@ -84,11 +83,11 @@ class Fcards extends Component{
 						</button>
 					</div>
                     
-                    {this.state.pop ?  <Card eng = this.state.key,
-    				   img = this.state.cards[this.state.key],
-    				   practice = this.state.isPractice,
-    				   prevCard = this.ShowPrevCard,
-    				   nextCard = this.ShowNextCard
+                    {this.state.pop ?  <Card eng = {this.state.key}
+    				   img = {this.state.cards[this.state.key]}
+    				   practice = {this.state.isPractice}
+    				   prevCard = {this.ShowPrevCard}
+    				   nextCard = {this.ShowNextCard}
     				  />: null}
 
 

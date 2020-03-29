@@ -3,7 +3,7 @@ import { Container} from 'reactstrap';
 import PageFrame from './PageFrame';
 import Fcards from './Fcards'
 import './TutorialPage.css';
-import axios from 'axios';
+{/*import axios from 'axios';*/}
 
 
 class TutorialPage extends Component {
@@ -20,7 +20,7 @@ class TutorialPage extends Component {
                         'b': 'https://i.ibb.co/BNsLzvS/B.png',
                         'c': 'https://i.ibb.co/fGKzr5F/C.png',
                         'd': 'https://i.ibb.co/G962j3F/D.png' },
-            //more: {}
+            
         };
     }
 
@@ -42,20 +42,20 @@ class TutorialPage extends Component {
 
                 <div className="folders-preview">
                     <div className="numbers">
-                        <Fcards cards = {this.state.numbers}, 
-                         name = "numbers" />  
+                        <Fcards cards = {this.state.numbers} 
+                         name = 'numbers' />  
                     </div>
 
                     <div className="alphabets">
-                        <Fcards cards={this.state.alphabets},
-                         name = "alphabets"/>  
+                        <Fcards cards = {this.state.alphabets}
+                         name = 'alphabets'/>  
                     </div>
-/*
+{/*
                     <div className="folder3">
-                        <Fcards cards={this.state.more} ,
+                        <Fcards cards={this.state.more}
                          name = "more"/>  
                     </div>
-*/
+*/}
                 </div>
                 <div className="page-foot">
                     <strong>Welcome to TutorialPage!</strong>
