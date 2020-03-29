@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Col, Row } from 'reactstrap';
 import PageFrame from './PageFrame';
 import * as handTrack from 'handtrackjs';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
@@ -14,8 +14,15 @@ class Webcam extends Component {
             imguri: undefined,
             closeWebcam: false,
             isFullScreen: false,
-            loading: false,
+            imgContent: undefined,
+            loading: true,
         }
+    }
+
+    componentDidMount() {
+        axios.get("http://localhost:8000/main/").then(() => {
+            this.setState({loading: false});
+        });
     }
 
     onCloseWebcam(e) {
@@ -32,10 +39,39 @@ class Webcam extends Component {
         this.setState({imguri: undefined, closeWebcam: false});
     }
 
+    dataURItoBlob() {
+        var byteString;
+        var imguri = this.state.imguri;
+        if (imguri.split(',')[0].indexOf('base64') >= 0)
+            byteString = atob(imguri.split(',')[1]);
+        else
+            byteString = unescape(imguri.split(',')[1])
+        
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+
+        return new Blob([ia], {type: 'image/jpeg'});
+    }
+
     handleSubmitImage(e) {
         e.preventDefault();
-        console.log('submit image...');
-        // @TODO
+        /*
+        var blob = this.dataURItoBlob();
+        console.log(blob);
+        var fd = new FormData();
+        fd.append("image", blob, "hand.jpeg");
+        console.log(fd);
+        */
+        var postdata = {
+            'uri': this.state.imguri
+        }
+        axios.post("http://localhost:8000/main/", postdata).then((res) => {
+            this.setState({
+                imgContent: res.content
+            });
+        });
     }
 
     render() {
@@ -46,6 +82,7 @@ class Webcam extends Component {
                     <Camera
                         onTakePhotoAnimationDone={dataUri => {this.handleTakePhoto(dataUri)}}
                         isFullScreen={this.state.isFullScreen}
+                        imageType = {IMAGE_TYPES.JPG}
                     />
                     <Button color="secondary" onClick={e => {this.onCloseWebcam(e)}}>Close Webcam</Button>
                 </div>
@@ -59,7 +96,14 @@ class Webcam extends Component {
 
         return (
             <PageFrame>
-                {content}
+                <Row>
+                    <Col>
+                        {content}
+                    </Col>
+                    <Col>
+                        <h5>{this.state.imgContent}</h5>
+                    </Col>
+                </Row>
             </PageFrame>
         );
     }
