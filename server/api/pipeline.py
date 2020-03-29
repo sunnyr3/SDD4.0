@@ -120,6 +120,7 @@ if __name__ == "__main__":
             im = cv2.resize(im, (100, 100))
             im = np.expand_dims(im, axis=0)
             result = rec_model.predict(im)
+            # Gives the result
             result_letter = map_characters[np.argmax(result[0])]
             frame = cv2.putText(frame, str(result_letter) + ' FPS:{}'.format(int(1/dt)), (50, 50), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 255), 1)
 
