@@ -107,7 +107,6 @@ def data_uri_to_cv2_img(uri):
 
 @api_view(['GET', 'POST'])
 @renderer_classes([JSONRenderer, ])
-@parser_classes([MultiPartParser, FormParser])
 def get_classifier(request):
     model_file = "./models/mobnet4f_cmu_adadelta_t1_model.pb"
     input_layer = "input_1"
