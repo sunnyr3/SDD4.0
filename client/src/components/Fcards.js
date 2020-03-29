@@ -1,9 +1,6 @@
 
-
 import React, { Component } from 'react';
 import { Container} from 'reactstrap';
-
-
 
 import './Fcards.css';
 import Card from './Card';
@@ -13,47 +10,56 @@ class Fcards extends Component{
 
 		super(props);
 		this.state = {
- 			isView: false,
+			pop = false;
  			isPractice: false,
- 			pop: false,
- 			cards: [
- 				{id: 1, eng: "one", img: one.jpg},
- 				{id: 2, eng: "two", img: two.jpg},
-				{id: 3, eng: "three", img: three.jpg}
-			],
- 			//currentCard{}
+ 			currentCard: 0
+ 			cards: undefined,
+ 			key: undefined
 		};
+		this.ShowPrevCard = this.prevCard.bind(this);
+    	this.ShowNextCard = this.nextCard.bind(this)
 	}
+
 
 	viewToggle = () =>{
 		this.setState({
-			isView: !this.state.isView,
-			pop: !this.state.pop
+			pop: !this.state.pop,
+			cards: this.props.cards,
+			key: Object.keys(this.state.cards)[this.state.currentCard]
 		});
 	}
 
 	practiceToggle = () =>{
 		this.setState({
+			pop: !this.state.pop,
 			isPractice: !this.state.isPractice,
-			pop: !this.state.pop
+			cards: this.props.cards
+			key: Object.keys(this.state.cards)[this.state.currentCard]
 		});
-	}
-
-	prevCard(){
-		const allcards = this.state.cards;
-		this.setState({
-			currentCard: ......prev iterate card in allcards
-		});
-
 
 	}
 
-	nextCard(){
+	prevCard() {
+		const index = this.state.currentCard;
+    	if (index > 0) {
+            index--;
+        }
+    	this.setState({
+      		currentCard: index,
+      		key: Object.keys(this.state.cards)[this.state.currentCard]
+    	});
+    	<Card  />
+	}
 
-		const allcards = this.state.cards;
-		this.setState({
-			currentCard: ......next iterate card in allcards
-		});
+	nextCard() {
+    	const index = this.state.currentCard;
+    	if (currentCard < cards.prototype.size - 1) {
+            index++;
+         }
+    	this.setState({
+      		currentCard: index
+      		key: Object.keys(this.state.cards)[this.state.currentCard]
+    	});
 
 	}
 
@@ -65,27 +71,26 @@ class Fcards extends Component{
 
 				//print out the name of the folder on folder
                	<div className = "foler-box"> {this.state.name}
-                	<div className = "view-div" onClick = {this.viewToggle}>
 
+                	<div className = "view-div" onClick = {() => this.viewToggle}>
 						<button type = "button" >
 							view
 						</button>
 					</div>
 
-					{this.state.isView ? <Card toggle={this.practiceToggle} 
-                	eng = {this.state.currentCard.eng} 
-                	img = {this.state.currentCard.img}/> : null}
-
-
-					<div className = "prac-div" onClick = {this.practiceToggle}>
+					<div className = "prac-div" onClick = {() => this.practiceToggle}>
 						<button type = "button" className = "practice">
 				 			practice
 						</button>
 					</div>
+                    
+                    {this.state.pop ?  <Card eng = this.state.key,
+    				   img = this.state.cards[this.state.key],
+    				   practice = this.state.isPractice,
+    				   prevCard = this.ShowPrevCard,
+    				   nextCard = this.ShowNextCard
+    				  />: null}
 
-                	{this.state.isPractice ? <Card toggle={this.practiceToggle} 
-                	eng = {this.state.currentCard.eng} 
-                	img = {this.state.currentCard.img}/> : null}
 
                	</div>
 
