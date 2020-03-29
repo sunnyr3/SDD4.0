@@ -5,6 +5,7 @@ import * as handTrack from 'handtrackjs';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import ImagePreview from './ImagePreview';
+import axios from 'axios';
 
 class Webcam extends Component {
     constructor(props) {
