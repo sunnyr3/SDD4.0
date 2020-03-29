@@ -3,7 +3,7 @@ import { Container} from 'reactstrap';
 import PageFrame from './PageFrame';
 import Fcards from './Fcards'
 import './TutorialPage.css';
-{/*import axios from 'axios';*/}
+//import axios from 'axios';
 
 
 class TutorialPage extends Component {

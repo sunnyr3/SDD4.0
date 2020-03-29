@@ -68,7 +68,7 @@ class Fcards extends Component{
 		return(
 
 			<div className = "folder">
-				//print out the name of the folder on folder
+		
                	<div className = "foler-box"> {this.state.name}
 
                 	<div className = "view-div" onClick = {() => this.viewToggle}>
