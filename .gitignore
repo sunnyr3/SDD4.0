@@ -1,2 +1,10 @@
 
 .idea/workspace.xml
+.idea/workspace.xml
+*.xml
+*.pyc
+.idea/workspace.xml
+.idea/SDD4.0.iml
+.idea/misc.xml
+server/api/utils/__pycache__/detector_utils.cpython-38.pyc
+*.pyc
