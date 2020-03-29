@@ -18,8 +18,7 @@ def getROI(image_np, boxes_roi, margin_ratio):
 def drawBoxOfROI(scores_roi, boxes_roi, padding_ratio,
                  margin_ratio, im_width, im_height, image_np):
     try:
-        # 扩大识别区域
-        (left, right, top, bottom) = boxes_roi[0]  # 取第一个框
+        (left, right, top, bottom) = boxes_roi[0]
         padding_x = padding_ratio * (right - left)
         padding_y = padding_ratio * (bottom - top)
         margin_x = margin_ratio * (right - left)
@@ -36,7 +35,6 @@ def drawBoxOfROI(scores_roi, boxes_roi, padding_ratio,
         # margin_bottom = min(int(bottom + margin_y), im_height - 1)
         margin_right = padding_right
         margin_bottom = padding_bottom
-        # 给定返回值
         b_have_hand = True
         image_clone_1 = image_np.copy()
         image_clone_2 = image_np.copy()
@@ -44,11 +42,8 @@ def drawBoxOfROI(scores_roi, boxes_roi, padding_ratio,
                                      margin_left:margin_right]
         image_roi = image_clone_2[padding_top:padding_bottom,
                                   padding_left:padding_right]
-        # 可视化
         cv2.rectangle(image_np, (margin_left, margin_top),
                       (margin_right, margin_bottom), (0, 255, 255), 2, 1)
-        # cv2.rectangle(image_np, (padding_left, padding_top),
-        #               (padding_right, padding_bottom), (0, 255, 0), 2, 1)
         cv2.putText(image_np, str(float('%.2f' % scores_roi[0])),
                     (int(margin_left), int(margin_top)-2),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.75,
@@ -77,22 +72,17 @@ def extractHand(image_np, image_np_extend):
     image_bin_list = []
     for image_iter in (image_np, image_np_extend):
         rows, cols = image_iter.shape[0:2]
-        # ------------ 高斯降噪 ------------ #
         image_blur = cv2.GaussianBlur(image_iter, (7, 7), 1)
-        # ------------ 开运算 ------------ #
         kernel = np.ones((10, 10), np.uint8)
         image_open = cv2.morphologyEx(image_blur, cv2.MORPH_OPEN, kernel)
-        # ------------ 肤色分割 ------------ #
         image_ycrcb = cv2.cvtColor(image_open, cv2.COLOR_RGB2YCrCb)
         (ch_y, ch_cr, ch_cb) = cv2.split(image_ycrcb)
         ch_cr = cv2.GaussianBlur(ch_cr, (5, 5), 1)
         _, ch_cr_bin = cv2.threshold(
             ch_cr, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
         image_bin = ch_cr_bin
-        # ------------ 开运算 ------------ #
         kernel = np.ones((5, 5), np.uint8)
         image_bin = cv2.morphologyEx(image_bin, cv2.MORPH_OPEN, kernel)
-        # ------------ 遮挡部分 ------------ #
         cv2.rectangle(image_bin, (0, int(rows * 0.82)),
                       (cols, rows), 0, thickness=-1)
         image_bin_list.append(image_bin)
@@ -102,7 +92,6 @@ def extractHand(image_np, image_np_extend):
 
 def myEllipseFitting(diff_rate, image_np):
     rows, cols = image_np.shape[0:2]
-    # ------------ 轮廓提取 ------------ #
     cont_all, _ = cv2.findContours(
         image_np, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cont_all_big = myContList(cont_all, (rows*cols)/3)
@@ -115,7 +104,6 @@ def myEllipseFitting(diff_rate, image_np):
         cv2.drawContours(image_extract_3ch, cont_all_big,
                          0, (127, 127, 127), -1)
         cnt = cont_all_big[0]
-        # ------------ 判断“拳头” ------------ #
         ellipse_fit = cv2.fitEllipse(cnt)
         image_temp = np.zeros((rows, cols), dtype='uint8')
         cv2.ellipse(image_temp, ellipse_fit, 255, thickness=-1)
@@ -133,7 +121,6 @@ def myEllipseFitting(diff_rate, image_np):
 
 def countFarPoint(far_ratio, image_np_extend):
     rows, cols = image_np_extend.shape[0:2]
-    # ------------ 轮廓提取 ------------ #
     cont_all, _ = cv2.findContours(
         image_np_extend, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cont_all_big = myContList(cont_all, (rows*cols)/3)
@@ -145,7 +132,7 @@ def countFarPoint(far_ratio, image_np_extend):
         image_extract_3ch = np.zeros((rows, cols, 3), dtype='uint8')
         cv2.drawContours(image_extract_3ch, cont_all_big,
                          0, (127, 127, 127), -1)
-        cnt = cont_all_big[0]        # ------------ 凸缺陷检测 ------------ #
+        cnt = cont_all_big[0]
         hull = cv2.convexHull(cnt, returnPoints=False)
         defects = cv2.convexityDefects(cnt, hull)
         i_num_far = 0
@@ -204,7 +191,6 @@ def processROI(b_have_hand, image_np, image_np_extend):
                 image_np, image_np_extend)
             image_ret, str_gesture = tellHand(
                 image_extract, image_extract_extend)
-            # ------------ 打印手势 ------------ #
             cv2.putText(image_ret, str_gesture, (0, 20),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.75,
                         (0, 255, 0), 2)

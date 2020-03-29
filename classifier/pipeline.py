@@ -1,16 +1,3 @@
-'''
-Adapted from the MonoHand3D codebase for the MonocularRGB_2D_Handjoints_MVA19 project (github release)
-
-This is a simple sample script for running the pretrained network for fast 2D joint estimation
-presented in "Accurate Hand Keypoint Localization on Mobile Devices" (MVA19)
-
-Only heatmaps are recovered (raw network output). If you need to extract keypoints check the code in this project:
-https://github.com/FORTH-ModelBasedTracker/MonocularRGB_3D_Handpose_WACV18
-
-
-@author: Paschalis Panteleris (padeler@ics.forth.gr)
-'''
-
 from __future__ import print_function
 from common.mva19 import Estimator, preprocess
 import numpy as np
@@ -102,9 +89,12 @@ if __name__ == "__main__":
 
     k = 0
     while k != ord('q'):
-        ret, frame = cap.read()
-        if not ret:
-            raise Exception("VideoCapture.read() returned False")
+        # ret, frame = cap.read()
+        # if not ret:
+        #     raise Exception("VideoCapture.read() returned False")
+        frame = cv2.imread('img path')
+        if frame is None:
+            continue
         tic = time.time()
         if get_bbox(frame):
 
@@ -125,7 +115,6 @@ if __name__ == "__main__":
 
             cv2.imwrite('msk/test/{}.jpg'.format(idx), bg)
             cv2.imwrite('ori/test/{}.jpg'.format(idx), crop_res)
-
 
             im = cv2.cvtColor(bg, cv2.COLOR_GRAY2BGR)
             im = cv2.resize(im, (100, 100))
