@@ -16,9 +16,11 @@ from . import label_map_util
 
 # Path to frozen detection graph.
 # This is the actual model that is used for the object detection.
-PATH_TO_CKPT = '/api/hand_inference_graph/frozen_inference_graph_2.pb'
+ABS_PATH = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(ABS_PATH, 'SDD4.0/server/api/hand_inference_graph/')
+PATH_TO_CKPT = os.path.join(ABS_PATH, 'frozen_inference_graph_2.pb')
 # List of the strings that is used to add correct label for each box.
-PATH_TO_LABELS = '/api/hand_inference_graph/hand_label_map.pbtxt'
+PATH_TO_LABELS = os.path.join(ABS_PATH, 'hand_label_map.pbtxt')
 
 NUM_CLASSES = 1
 # load label map
