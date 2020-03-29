@@ -1,12 +1,12 @@
 from __future__ import print_function
-from common.mva19 import Estimator, preprocess
+from server.api.classifier.common.mva19 import Estimator, preprocess
 import numpy as np
 import cv2
 import time
 import argparse
 import tensorflow as tf
-from utils import detector_utils as detector_utils
-from utils import recognizer_utils as recognizer_utils
+from server.api.classifier.utils import detector_utils as detector_utils
+from server.api.classifier.utils import recognizer_utils as recognizer_utils
 import os
 import numpy as np
 from keras.models import *
