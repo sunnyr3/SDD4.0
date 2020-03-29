@@ -30,13 +30,13 @@ class MainPage extends Component {
             scoreThreshold: 0.5,    // confidence threshold for predictions.
         }
         
-        let bbox;
+       // let bbox;
         handTrack.load(modelParams).then(model => {
             // detect objects in the image.
             console.log("model loaded")
             model.detect(img).then(predictions => {
                 console.log('Predictions: ', predictions);
-                bbox = predictions.bbox;
+           //     bbox = predictions.bbox;
             });
         });
         // TODO: pass image to backend
@@ -74,7 +74,7 @@ class MainPage extends Component {
                             </form>
                             <div className="img-preview-div">
                                 {this.state.imagePreviewUrl !== undefined ? (
-                                    <img id="img" src={this.state.imagePreviewUrl} />
+                                    <img id="img" src={this.state.imagePreviewUrl} alt = "sign language" />
                                 ) : ('')}
                             </div>
                         </Col>

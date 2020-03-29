@@ -1,6 +1,6 @@
 import React from 'react';
 import NavHeader from './NavHeader';
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import './PageFrame.css';
 
 const PageFrame = ({children}) => (
