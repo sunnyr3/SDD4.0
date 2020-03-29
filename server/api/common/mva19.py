@@ -43,7 +43,7 @@ def peaks_to_hand(peaks, dx,dy):
 
 def load_graph(model_file):
     graph = tf.Graph()
-    graph_def = tf.GraphDef()
+    graph_def = tf.compat.v1.GraphDef()
 
     with open(model_file, "rb") as f:
         graph_def.ParseFromString(f.read())
@@ -120,7 +120,7 @@ class Estimator(object):
         self.graph = load_graph(model_file)
         self.input_operation = self.graph.get_operation_by_name(input_name)
         self.output_operation = self.graph.get_operation_by_name(output_name)
-        self.sess = tf.Session(graph=self.graph)
+        self.sess = tf.compat.v1.Session(graph=self.graph)
         
 
     def predict(self, img):

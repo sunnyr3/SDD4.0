@@ -17,9 +17,11 @@ from .utils import detector_utils as detector_utils
 from .utils import recognizer_utils as recognizer_utils
 import os
 import numpy as np
-from keras.models import *
+from tensorflow.keras.models import model_from_json
+#from keras.models import load_weights
 import time
 import shutil
+import base64
 
 
 # Links for each sign language picture to online image server
@@ -101,19 +103,19 @@ def get_bbox(img_src):
 
 def data_uri_to_cv2_img(uri):
     encoded_data = uri.split(',')[1]
-    nparr = np.fromstring(encoded_data.decode('base64'), np.uint8)
+    nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     return img
 
 @api_view(['GET', 'POST'])
 @renderer_classes([JSONRenderer, ])
 def get_classifier(request):
-    model_file = "./models/mobnet4f_cmu_adadelta_t1_model.pb"
+    model_file = "/server/server/api/models/mobnet4f_cmu_adadelta_t1_model.pb"
     input_layer = "input_1"
     output_layer = "k2tfout_0"
 
     detection_graph, sess = detector_utils.load_inference_graph()
-    sess = tf.Session(graph=detection_graph)
+    sess = tf.compat.v1.Session(graph=detection_graph)
     score_thresh = 0.1
 
     stride = 4
@@ -122,12 +124,12 @@ def get_classifier(request):
     estimator = Estimator(model_file, input_layer, output_layer)
 
     # json_file = open('rec_model.json', 'r')
-    json_file = open('rec_model.json', 'r')
+    json_file = open('/server/server/api/rec_model.json', 'r')
     rec_model_json = json_file.read()
     json_file.close()
     rec_model = model_from_json(rec_model_json)
     # rec_model.load_weights("rec_model_4epochs.h5")
-    rec_model.load_weights("rec_model_17epochs.h5")
+    rec_model.load_weights("/server/server/api/rec_model_17epochs.h5")
     print("Loaded rec model from disk")
 
     cap = cv2.VideoCapture(0)
@@ -139,8 +141,8 @@ def get_classifier(request):
     k = 0
 
     if request.method == 'POST':
-        print(request.POST)
-        img_uri = str(request.POST.getlist("uri")[0])
+        print(request.data.get('uri'))
+        img_uri = request.data.get('uri')
         frame = data_uri_to_cv2_img(img_uri)
         if get_bbox(frame):
 
@@ -178,8 +180,8 @@ def get_tutorial(request):
 @api_view(['POST'])
 @renderer_classes([JSONRenderer, ])
 def search(request):
-    print(request.POST)
-    searchkey = str(request.POST.getlist("key")[0])
+    print(request.data)
+    searchkey = request.data.get("key")
     searchkey = searchkey.lower()
     res = []
     for c in searchkey:

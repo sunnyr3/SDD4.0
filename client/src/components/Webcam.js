@@ -68,9 +68,14 @@ class Webcam extends Component {
         var postdata = {
             'uri': this.state.imguri
         }
-        axios.post("http://localhost:8000/main/", postdata).then((res) => {
+        axios({
+            method: 'post',
+            url: "http://localhost:8000/main/",
+            data: postdata
+        }).then((res) => {
+            console.log(res.data);
             this.setState({
-                imgContent: res.content
+                imgContent: res.data.content
             });
         });
     }
