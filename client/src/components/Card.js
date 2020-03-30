@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import Popup from "reactjs-popup";
+//import Popup from "reactjs-popup";
 import './Card.css'
 
 class Card extends Component {
@@ -10,7 +10,6 @@ class Card extends Component {
     };
 
     render() {
-
       return (
 
          <div className = "card-model">

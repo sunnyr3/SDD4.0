@@ -1,14 +1,13 @@
 
 import React, { Component } from 'react';
 //import { Container} from 'reactstrap';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 //import Popup from "reactjs-popup";
 import './Fcards.css';
 import Card from './Card';
 class Fcards extends Component{
      
     constructor(props){
-
 		super(props);
 		this.state = {
 			pop: false,
@@ -85,13 +84,15 @@ class Fcards extends Component{
 
 					<div className = "prac-div" onClick = {() => this.practiceToggle}>
 						<button>Practice</button>
-        					{this.state.pop? <Card eng = {this.state.key}
+					</div>
+
+
+					{this.state.pop? <Card eng = {this.state.key}
     				   		img = {this.props.cards[this.state.key]}
     				   		practice = {this.state.isPractice}
     				   		prevCard = {this.ShowPrevCard}
     				   		nextCard = {this.ShowNextCard}
     				   		closew = {this.closebutton}/>:null}
-					</div>
                	</div>
 
    			</div>
