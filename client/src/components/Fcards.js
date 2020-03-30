@@ -79,25 +79,25 @@ class Fcards extends Component{
 
                	<div className = "foler-box"> 
 					
-                	<div className = "view-div" onClick = {() => this.viewToggle}>
-						<button>View</button>>
-					</div>
+                	<button className = "view-div" onClick = {() => this.viewToggle()}>
+						View
+					</button>
 
-					<div className = "prac-div" onClick = {() => this.practiceToggle}>
-						<button>Practice</button>
-					</div>
+					<button className = "prac-div" onClick = {() => this.practiceToggle()}>
+						Practice
+					</button>
     		    
                	</div>
 
 
-   				<div className = "card-position">
-					 <Card eng = {this.state.key}
+   				{this.state.pop? <Card eng = {this.state.key}
     				   		img = {this.props.cards[this.state.key]}
     				   		practice = {this.state.isPractice}
     				   		prevCard = {this.ShowPrevCard}
     				   		nextCard = {this.ShowNextCard}
-    				   		closew = {this.closebutton} />
-    			</div>
+    				   		closew = {this.closebutton} />: null
+    		    }
+    			
     		</div>
    		</div>
 

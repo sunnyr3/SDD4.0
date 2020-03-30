@@ -12,7 +12,7 @@ class AppRouter extends Component {
                     <Switch>
 
                         <Route exact path="/" component={Webcam} />
-                        <Route exact path="/tutorial" component={TutorialPage} />
+                        <Route exact path="/TutorialPage" component={TutorialPage} />
 
                     </Switch>
                 </div>
