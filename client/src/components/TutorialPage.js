@@ -50,12 +50,7 @@ class TutorialPage extends Component {
                         <Fcards cards = {this.state.alphabets}
                          name = 'alphabets'/>  
                     </div>
-{/*
-                    <div className="folder3">
-                        <Fcards cards={this.state.more}
-                         name = "more"/>  
-                    </div>
-*/}
+
                 </div>
                 <div className="page-foot">
                     <strong>Welcome to TutorialPage!</strong>

@@ -12,7 +12,7 @@ class Card extends Component {
     render() {
       return (
 
-         <div className = "card-model">
+         //<div className = "card-model">
               <div className = "card-container">
 
                   <span className="closewindow" onClick={this.handleClick}>
@@ -25,12 +25,12 @@ class Card extends Component {
                       </div>
 
                       <div className = 'card-eng'>
-                          {this.props.practice ?  <p>{this.props.eng}</p> : null}
+                          {this.props.practice?  null:<p>{this.props.eng}</p> }
                       </div>
                   </div>
 
              
-                  <div className = "bottoms">
+                  <span className = "bottoms">
                       <div className = "bottm-prev">
                           <button className="button" onClick={() => this.props.prevCard()}>
                             Prev
@@ -43,10 +43,10 @@ class Card extends Component {
                             Next
                           </button>
                       </div>
-                  </div>
+                  </span>
 
               </div> 
-           </div> 
+           //</div> 
         );
     }
 }

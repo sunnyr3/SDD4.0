@@ -59,7 +59,8 @@ class Fcards extends Component{
 
 	nextCard() {
         var index = this.state.currentCard;
-    	const length = this.state.cards.prototype.size;
+        const length = 3;
+    	//const length = this.state.cards.length;
     	if (index < length - 1) {
             index++;
          }
@@ -73,11 +74,11 @@ class Fcards extends Component{
 	render(){
 
 		return(
-
+		<div className = "page">
 			<div className = "folder">
-		
-               	<div className = "foler-box"> {this.state.name}
 
+               	<div className = "foler-box"> 
+					
                 	<div className = "view-div" onClick = {() => this.viewToggle}>
 						<button>View</button>>
 					</div>
@@ -85,17 +86,20 @@ class Fcards extends Component{
 					<div className = "prac-div" onClick = {() => this.practiceToggle}>
 						<button>Practice</button>
 					</div>
+    		    
+               	</div>
 
 
-					{this.state.pop? <Card eng = {this.state.key}
+   				<div className = "card-position">
+					 <Card eng = {this.state.key}
     				   		img = {this.props.cards[this.state.key]}
     				   		practice = {this.state.isPractice}
     				   		prevCard = {this.ShowPrevCard}
     				   		nextCard = {this.ShowNextCard}
-    				   		closew = {this.closebutton}/>:null}
-               	</div>
-
-   			</div>
+    				   		closew = {this.closebutton} />
+    			</div>
+    		</div>
+   		</div>
 
 		);
 

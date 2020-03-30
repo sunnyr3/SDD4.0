@@ -1,5 +1,15 @@
+.card-position {
+
+
+margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+
 .folder {
-	background-color: #80ced6;
+	  background-color: #80ced6;
     border: 5px solid #d5f4e6;
     border-radius: 2px;
     margin: .75rem;

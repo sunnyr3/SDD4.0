@@ -1,15 +1,19 @@
 
 
 
+/*
 .card-modal {
+
   position: fixed;
   z-index: 1;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
+  width:100%;
+  height:100%;
+ background-color: rgba(0, 255, 0, 0.25);
+ 
 }
-
+*/
 .card-container {
+  z-index: 1;
   background-color: white;
   position: absolute;
   height: 20em;
@@ -17,6 +21,7 @@
   outline: 4px solid Black;
   box-shadow: inset 0px 0px 0px 3px gray;
   animation: fadeIn 0.5s;
+  
 }
 
 
@@ -32,16 +37,21 @@
 }
 
 
-
-.card-img{
-	display: inline-block;
+.card-img { 
+  float: left;
+  width: 12em;
+  height: 15em;
+  display: inline-block;
 }
-
 .card-eng{
+  width: 37%;
+  height: 70%;
 	display: inline-block;
+  background-color: red;
 }
 
 .bottom-prev {
+  
   margin-right: 0.5em;
   cursor: pointer;
   padding: 0.5em 0.75em;
@@ -55,6 +65,7 @@
 }
 
 .bottom-next {
+  float: right;
   margin-left: 0.5em;
   cursor: pointer;
   padding: 0.5em 0.75em;
