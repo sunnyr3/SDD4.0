@@ -1,119 +1,98 @@
 
-
-
-/*
-.card-modal {
-
-  position: fixed;
-  z-index: 1;
-  width:100%;
-  height:100%;
- background-color: rgba(0, 255, 0, 0.25);
- 
-}
-*/
+/*container of the card component*/
 .card-container {
-  z-index: 1;
-  background-color: white;
-  position: absolute;
-  width: 30em;
-  height: 27em;
-  border-radius: 12px;
-  /*outline: 4px solid Black;*/
-  box-shadow: inset 0px 0px 0px 3px gray;
-  animation: fadeIn 0.5s;
+    background-color: white;
+    position: absolute;
+    width: 30em;
+    height: 27em;
+    z-index: 1;
+    border-radius: 12px;
+    box-shadow: inset 0px 0px 0px 3px gray;
+    animation: fadeIn 0.5s;
   
 }
 
+/*close bottom for the whole card*/
 .card-model{
-  position: relative;
+    position: relative;
 }
 
-
 .closewindow {
-  color: Black;
-  float: right;
+    color: Black;
+    float: right;
 }
 
 .closewindow:hover {
-  color: cyan;
-  cursor: pointer;
+    color: cyan;
+    cursor: pointer;
 }
 
 
+/*div for the tutorial flashcard*/
 .catd-content {
     position: absolute;
     float: left;
 
 }
 
-.bottoms {
-    position: absolute;
-    float: right;
 
+.card-img {                 /*image of sign language*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 1em;
 }
 
 
-.card-img { 
-  padding: 1em;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  
-}
-.card-eng{
-
-  background-color: gray;
-  margin-left: 2em;
-  margin-right:2em;
-  margin-bottom: em;
- overflow-y: hidden;
-  padding: 1em;
-  text-align: center;
-  font-size: 30px;
+.card-eng{                  /*english explanation part for card*/
+    background-color: gray;
+    margin-left: 2em;
+    margin-right:2em;
+    margin-bottom: em;
+    overflow-y: hidden;
+    padding: 1em;
+    text-align: center;
+    font-size: 30px;
 
 }
 
+/*div for page switch bottons*/
 .bottoms{
-  padding-top: 1em;
-  position: absolute;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  
-  transition: 0.3s;
-  
-  
-  
+    display: flex;
+    position: absolute;
+    padding-top: 1em; 
+    width: 100%;
+    justify-content: center;
+    transition: 0.3s;
 }
 
 
 
-.b1 {
-  display: inline-block;
-  margin-right: 0.5em;
-  cursor: pointer;
-  padding: 10px 24px;
-  background: $background;
-  color: #444;
-  transition: 0.2s;
+.b1 {                         /*b1: prev botton*/
+    display: inline-block;
+    margin-right: 0.5em;
+    cursor: pointer;
+    padding: 10px 24px;
+    background: $background;
+    color: #444;
+    transition: 0.2s;
   
-  &:hover {
-    background: darken($background, 10%);
-  }
+    &:hover {
+        background: darken($background, 10%);
+    }
 }
 
-.b2 {
-  display: inline-block;
-  margin-left: 0.5em;
-  cursor: pointer;
-  padding: 10px 24px;
-  background: $background;
-  color: #444;
-  transition: 0.2s;
+.b2 {                         /*b2: next botton*/
+    display: inline-block;
+    margin-left: 0.5em;
+    cursor: pointer;
+    padding: 10px 24px;
+    background: $background;
+    color: #444;
+    transition: 0.2s;
   
-  &:hover {
-    background: darken($background, 10%);
-  }
+    &:hover {
+        background: darken($background, 10%);
+    }
 }

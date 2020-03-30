@@ -10,11 +10,10 @@ class TutorialPage extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
-            route: props.match.url,
-
-
-          
+            route: props.match.url,       
+            //sign language & explanation data
             numbers: {'1': 'https://i.ibb.co/R40rKGC/1.jpg',
                       '2': 'https://i.ibb.co/HNLRcDw/2.jpg',
                       '3': 'https://i.ibb.co/W27Gr39/3.jpg'},
@@ -40,46 +39,39 @@ class TutorialPage extends Component {
     }
 */
 
-getmapsize = (m) => {
-        var len = 0;
-       
+//function to get the size of a folder(map)
+    getmapsize = (m) => {
+        var len = 0; 
         for (var count in m) {
             len++;
         }
         return len;
-}
-
-
+    }
 
     render() {
-      return(
-        <PageFrame>
-            <Container>
-                
-                <div className="folders-preview">
-                
-                    <div className="numbers">
-                        <Fcards cards = {this.state.numbers} 
-                         name = 'numbers' 
-                         length = {this.getmapsize(this.state.numbers)}/>  
+        return(
+            <PageFrame>
+                <Container>      
+                    <div className="folders-preview">               
+                        <div className="numbers">                          //first card folder, type is numbers
+                            <Fcards cards = {this.state.numbers}                //card folder data
+                             name = 'numbers'                                   //card folder type
+                             length = {this.getmapsize(this.state.numbers)}/>   //number of cards in folder
+                        </div>
+                        <div className="alphabets">        //folder2,type is alphabets
+                            <Fcards cards = {this.state.alphabets}
+                             name = 'alphabets'
+                             length = {this.getmapsize(this.state.alphabets)}/>  
+                        </div>
+                    </div>             
+                    <div className="page-foot">            //foot of the page
+                        <strong>Welcome to TutorialPage!</strong>
                     </div>
-                    <div className="alphabets"> 
-                        <Fcards cards = {this.state.alphabets}
-                         name = 'alphabets'
-                         length = {this.getmapsize(this.state.alphabets)}/>  
-                    </div>
-
-                </div>
-                
-                <div className="page-foot">
-                    <strong>Welcome to TutorialPage!</strong>
-                </div>
-            </Container>
-        </PageFrame>
-      );
+                </Container>
+            </PageFrame>
+        );
     }
 }
-
 
 export default TutorialPage;
 

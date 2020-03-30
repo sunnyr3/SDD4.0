@@ -1,7 +1,7 @@
 
-
+/*folder component container stype*/
 .folder {
-	  background-color: #80ced6;
+	background-color: #80ced6;
     border: 5px solid #d5f4e6;
     border-radius: 2px;
     margin: .75rem;
@@ -13,7 +13,6 @@
     box-shadow: 0 3px 6px #999, 0 3px 6px #999;
     transition: box-shadow 0.1s ease-in-out;
     text-align: left;
-
 }
 
 .folder: hover{
@@ -30,36 +29,37 @@
 	box-shadow: rgba(0,0,0,.24)
 }
 
+/*view botton and practice botton*/
 .view-div {
-  margin-right: 0.5em;
-  cursor: pointer;
-  padding: 0.5em 0.75em;
-  background: $background;
-  color: #444;
-  transition: 0.2s;
+    margin-right: 0.5em;
+    cursor: pointer;
+    padding: 0.5em 0.75em;
+    background: $background;
+    color: #444;
+    transition: 0.2s;
   
-  &:hover {
-    background: darken($background, 10%);
-  }
+    &:hover {
+        background: darken($background, 10%);
+    }
 }
-
 
 .prac-div {
-  margin-right: 0.5em;
-  cursor: pointer;
-  padding: 0.5em 0.75em;
-  background: $background;
-  color: #444;
-  transition: 0.2s;
+    margin-right: 0.5em;
+    cursor: pointer;
+    padding: 0.5em 0.75em;
+    background: $background;
+    color: #444;
+    transition: 0.2s;
   
-  &:hover {
-    background: darken($background, 10%);
-  }
+    &:hover {
+        background: darken($background, 10%);
+    }
 }
 
+/*font style for name of the folder*/
 .title {
-  font-size: 80px;
-  text-align: center;
+    font-size: 80px;
+    text-align: center;
 }
 
 
