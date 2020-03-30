@@ -1,8 +1,37 @@
-a {
 
-	background-color: #92a8d1
 
+
+.card-modal {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
 }
+
+.card-container {
+  background-color: white;
+  position: absolute;
+  height: 20em;
+  width: 30em;
+  outline: 4px solid Black;
+  box-shadow: inset 0px 0px 0px 3px gray;
+  animation: fadeIn 0.5s;
+}
+
+
+
+.closewindow {
+  color: Black;
+  float: right;
+}
+
+.closewindow:hover {
+  color: cyan;
+  cursor: pointer;
+}
+
+
 
 .card-img{
 	display: inline-block;
@@ -10,4 +39,30 @@ a {
 
 .card-eng{
 	display: inline-block;
+}
+
+.bottom-prev {
+  margin-right: 0.5em;
+  cursor: pointer;
+  padding: 0.5em 0.75em;
+  background: $background;
+  color: #444;
+  transition: 0.2s;
+  
+  &:hover {
+    background: darken($background, 10%);
+  }
+}
+
+.bottom-next {
+  margin-left: 0.5em;
+  cursor: pointer;
+  padding: 0.5em 0.75em;
+  background: $background;
+  color: #444;
+  transition: 0.2s;
+  
+  &:hover {
+    background: darken($background, 10%);
+  }
 }

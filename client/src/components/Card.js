@@ -4,25 +4,23 @@ import Popup from "reactjs-popup";
 import './Card.css'
 
 class Card extends Component {
-  
+    
+    handleClick = () => {
+      this.props.closew();
+    };
 
     render() {
 
       return (
-          <Popup> { close => (
+
+         <div className = "card-model">
               <div className = "card-container">
 
-                  <div className="button-close">
-
-                      <button className="button" onClick={() => {console.log("modal closed ");
-                      close(); }}>
-                          close
-                      </button>
-                  </div>
-
+                  <span className="closewindow" onClick={this.handleClick}>
+                    &times;
+                  </span>
              
-
-                  <div className = "card-module">
+                  <div className = "card-content">
                       <div className = 'card-img'>
                           <img alt = {this.props.eng} src={this.props.img} />
                       </div>
@@ -46,12 +44,10 @@ class Card extends Component {
                             Next
                           </button>
                       </div>
-
                   </div>
 
               </div> 
-           )}
-          </Popup>
+           </div> 
         );
     }
 }

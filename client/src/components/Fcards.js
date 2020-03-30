@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
 //import { Container} from 'reactstrap';
-
+import { Link } from 'react-router-dom';
+//import Popup from "reactjs-popup";
 import './Fcards.css';
 import Card from './Card';
 class Fcards extends Component{
@@ -13,19 +14,26 @@ class Fcards extends Component{
 			pop: false,
  			isPractice: false,
  			currentCard: 0,
- 			cards: undefined,
- 			key: undefined
+ 			key: Object.keys(this.props.cards)[0]
 		};
 		this.ShowPrevCard = this.prevCard.bind(this);
     	this.ShowNextCard = this.nextCard.bind(this)
 	}
 
+    closebutton = () => {
+    	this.setState({
+      	   pop: !this.state.pop,
+      	   isPractice: !this.state.pop,
+      	   currentCard: 0,
+      	   key: Object.keys(this.props.cards)[0]
+    	});
+ 	};
 
 	viewToggle = () =>{
 		this.setState({
 			pop: !this.state.pop,
 			cards: this.props.cards,
-			key: Object.keys(this.state.cards)[this.state.currentCard]
+			key: Object.keys(this.props.cards)[this.state.currentCard]
 		});
 	}
 
@@ -34,7 +42,7 @@ class Fcards extends Component{
 			pop: !this.state.pop,
 			isPractice: !this.state.isPractice,
 			cards: this.props.cards,
-			key: Object.keys(this.state.cards)[this.state.currentCard]
+			key: Object.keys(this.props.cards)[this.state.currentCard]
 		});
 
 	}
@@ -46,7 +54,7 @@ class Fcards extends Component{
         }
     	this.setState({
       		currentCard: index,
-      		key: Object.keys(this.state.cards)[this.state.currentCard]
+      		key: Object.keys(this.props.cards)[this.state.currentCard]
     	});
 	}
 
@@ -58,7 +66,7 @@ class Fcards extends Component{
          }
     	this.setState({
       		currentCard: index,
-      		key: Object.keys(this.state.cards)[this.state.currentCard]
+      		key: Object.keys(this.props.cards)[this.state.currentCard]
     	});
 
 	}
@@ -72,25 +80,18 @@ class Fcards extends Component{
                	<div className = "foler-box"> {this.state.name}
 
                 	<div className = "view-div" onClick = {() => this.viewToggle}>
-						<button type = "button" >
-							view
-						</button>
+						<button>View</button>>
 					</div>
 
 					<div className = "prac-div" onClick = {() => this.practiceToggle}>
-						<button type = "button" className = "practice">
-				 			practice
-						</button>
+						<button>Practice</button>
+        					{this.state.pop? <Card eng = {this.state.key}
+    				   		img = {this.props.cards[this.state.key]}
+    				   		practice = {this.state.isPractice}
+    				   		prevCard = {this.ShowPrevCard}
+    				   		nextCard = {this.ShowNextCard}
+    				   		closew = {this.closebutton}/>:null}
 					</div>
-                    
-                    {this.state.pop ?  <Card eng = {this.state.key}
-    				   img = {this.state.cards[this.state.key]}
-    				   practice = {this.state.isPractice}
-    				   prevCard = {this.ShowPrevCard}
-    				   nextCard = {this.ShowNextCard}
-    				  />: null}
-
-
                	</div>
 
    			</div>

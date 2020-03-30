@@ -28,3 +28,32 @@
 	box-shadow: rgba(0,0,0,.24)
 }
 
+.view-div {
+  margin-right: 0.5em;
+  cursor: pointer;
+  padding: 0.5em 0.75em;
+  background: $background;
+  color: #444;
+  transition: 0.2s;
+  
+  &:hover {
+    background: darken($background, 10%);
+  }
+}
+
+
+.prac-div {
+  margin-right: 0.5em;
+  cursor: pointer;
+  padding: 0.5em 0.75em;
+  background: $background;
+  color: #444;
+  transition: 0.2s;
+  
+  &:hover {
+    background: darken($background, 10%);
+  }
+}
+
+
+
