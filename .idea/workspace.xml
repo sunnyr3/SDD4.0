@@ -2,26 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad7e46bc-70d4-416d-b367-a096fd88f17b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/api/rec_model_new_3k13epochs.h5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SDD4.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SDD4.0.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/api/HandInferenceEstimator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/common/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/common/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/common/mva19.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/common/mva19.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/pipeline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/seg.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/utils/recognizer_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/utils/recognizer_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/common/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/Classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/common/mva19.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/hand_inference_graph/frozen_inference_graph.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/hand_inference_graph/frozen_inference_graph_2.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/hand_inference_graph/hand_label_map.pbtxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandDetectionEstimator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/models/mobnet4f_cmu_adadelta_t1_model.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/protos/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandGestureClassifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/protos/string_int_label_map_pb2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/utils/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/utils/detector_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/utils/frozen_inference_graph.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/utils/frozen_inference_graph_2.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/utils/hand_label_map.pbtxt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/utils/label_map_util.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/utils/recognizer_utils.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/server/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
