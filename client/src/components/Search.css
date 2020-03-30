@@ -1,0 +1,82 @@
+.container{
+    height:70%;
+}
+
+.Translater-container{
+    margin-top: 1em;
+    font-size: 2em;
+    line-height: 1.5;
+    width:100%;
+    height: 70%;
+}
+
+.translater-left-container{
+    display: inline;
+    float: left;
+    width: 48%;
+    height: 10em;
+    left:0;
+    margin-right: 20px;
+}
+
+.English{
+  height: 100%;
+}
+
+.sign{
+  height: 100%;
+}
+
+.translater-right-container{
+    display: inline;
+    float: right;
+    width: 48%;
+    height: 10em;
+    right:0;
+    margin-left: 20px;
+}
+
+.form{
+    height:100%;
+}
+
+.English-input{
+    width:100%;
+    height:100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border:2px;
+    border-style: solid;
+}
+
+.Sign-output{
+    width:100%;
+    height:100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border:2px;
+    border-style: solid;
+    color: gray;
+}
+
+.translate-button{
+  margin-top:2em;
+}
+
+.translate{
+  padding: 8px 18px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #0378A3;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px #999;
+}
+
+.clear{
+  clear:both;
+}
