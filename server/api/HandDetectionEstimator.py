@@ -5,14 +5,16 @@ import tensorflow as tf
 
 class HandDetectionEstimator(object):
     def __init__(self, ckpt_path):
+        """
+
+        :param ckpt_path:
+        """
         self.graph, self.sess = self.load_inference_graph(ckpt_path)
 
     def check_if_hand_present(self, img_src, score_thresh=0.1):
         """
-        get bouding box for the hand, basically checking if there is hand
+        get bounding box for the hand, basically checking if there is hand
         :param img_src:
-        :param detection_graph:
-        :param sess:
         :param score_thresh:
         :return: True if there is hand, False if not
         """
@@ -25,6 +27,13 @@ class HandDetectionEstimator(object):
 
     @staticmethod
     def detect_objects(image_np, detection_graph, sess):
+        """
+
+        :param image_np:
+        :param detection_graph:
+        :param sess:
+        :return:
+        """
         # Definite input and output Tensors for detection_graph
         image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
         # Each box represents a part of the image
@@ -50,6 +59,11 @@ class HandDetectionEstimator(object):
 
     @staticmethod
     def load_inference_graph(path):
+        """
+
+        :param path:
+        :return:
+        """
         # load frozen tensorflow model into memory
         print("loading HAND frozen graph into memory")
         detection_graph = tf.Graph()

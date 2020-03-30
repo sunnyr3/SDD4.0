@@ -6,9 +6,10 @@ import tensorflow as tf
 class HandInferenceEstimator(object):
     def __init__(self, model_path , input_layer="input_1", output_layer="k2tfout_0"):
         """
-        :param model_file: model file
-        :param input_layer: input layer
-        :param output_layer: output layer
+
+        :param model_path:
+        :param input_layer:
+        :param output_layer:
         """
         input_name = "import/" + input_layer
         output_name = "import/" + output_layer
@@ -22,12 +23,12 @@ class HandInferenceEstimator(object):
 
     def preprocess(self, oriImg, boxsize=368, stride=8, padValue=128):
         """
-        preprocess images, scaling and padding images
-        :param oriImg: original image
-        :param boxsize: box size
-        :param stride: stride, network parameter
-        :param padValue: padValue
-        :return: processed image and padding
+
+        :param oriImg:
+        :param boxsize:
+        :param stride:
+        :param padValue:
+        :return:
         """
         scale = float(boxsize) / float(oriImg.shape[0])
         imageToTest = cv2.resize(oriImg, (0, 0), fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)
@@ -37,17 +38,21 @@ class HandInferenceEstimator(object):
 
     def predict(self, frame):
         """
-        get prediction from model
-        :param img: image
-        :return: prediction result (one hot)
-        """
 
+        :param frame:
+        :return:
+        """
         crop_res = cv2.resize(frame, (self.boxsize, self.boxsize))
         img, pad = self.preprocess(crop_res, self.boxsize, self.stride)
         results = self.sess.run(self.output_operation.outputs[0], feed_dict={self.input_operation.outputs[0]: img})
         return np.squeeze(results)
 
     def get_bg(self, img):
+        """
+
+        :param img:
+        :return:
+        """
         hm = self.predict(img)
         hm = cv2.resize(hm, (0, 0), fx=self.stride, fy=self.stride)
         bg = cv2.normalize(hm[:, :, -1], None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8UC1)
@@ -57,11 +62,11 @@ class HandInferenceEstimator(object):
     @staticmethod
     def padRightDownCorner(img, stride, padValue):
         """
-        preprocess image with padding
-        :param img: image
-        :param stride: stride
-        :param padValue: padValue
-        :return: padded image and padding
+
+        :param img:
+        :param stride:
+        :param padValue:
+        :return:
         """
         h = img.shape[0]
         w = img.shape[1]
@@ -87,9 +92,9 @@ class HandInferenceEstimator(object):
     @staticmethod
     def load_graph(model_file):
         """
-        load frozen inference graph
+
         :param model_file:
-        :return: graph
+        :return:
         """
         graph = tf.Graph()
         graph_def = tf.compat.v1.GraphDef()

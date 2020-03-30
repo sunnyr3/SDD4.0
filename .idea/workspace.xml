@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad7e46bc-70d4-416d-b367-a096fd88f17b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/api/HandInferenceEstimator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/common/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/Classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/common/mva19.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/hand_inference_graph/frozen_inference_graph.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/hand_inference_graph/frozen_inference_graph_2.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/hand_inference_graph/hand_label_map.pbtxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandDetectionEstimator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/models/mobnet4f_cmu_adadelta_t1_model.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/protos/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandGestureClassifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/protos/string_int_label_map_pb2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/utils/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/utils/detector_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/utils/frozen_inference_graph.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/utils/frozen_inference_graph_2.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/utils/hand_label_map.pbtxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/utils/label_map_util.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/utils/recognizer_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/Classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/Classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/HandDetectionEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandDetectionEstimator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/HandGestureClassifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandGestureClassifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/HandInferenceEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandInferenceEstimator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
