@@ -77,7 +77,8 @@ refersh_data = True
 letter = 'I'
 idx = 0
 
-def get_bbox(img_src):
+def get_bbox(img_src, detection_graph, sess, score_thresh):
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '-nhands',
@@ -87,13 +88,14 @@ def get_bbox(img_src):
         default=1,
         help='Max number of hands to detect.')
     args = parser.parse_args()
+    """
     if img_src is None:
         print('Load Fail')
     else:
         boxes, scores = detector_utils.detect_objects(
             img_src, detection_graph, sess)
         boxes_to_recog, scores_to_show = detector_utils.draw_box_on_image(
-            args.num_hands, score_thresh, scores, boxes,
+            1, score_thresh, scores, boxes,
             img_src.shape[1], img_src.shape[0], img_src)
         boxes_roi = boxes_to_recog
         if len(boxes_roi) > 0:
@@ -144,7 +146,7 @@ def get_classifier(request):
         print(request.data.get('uri'))
         img_uri = request.data.get('uri')
         frame = data_uri_to_cv2_img(img_uri)
-        if get_bbox(frame):
+        if get_bbox(frame, detection_graph, sess, score_thresh):
 
             crop_res = cv2.resize(frame, (boxsize, boxsize))
             img, pad = preprocess(crop_res, boxsize, stride)
