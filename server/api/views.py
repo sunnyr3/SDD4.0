@@ -18,7 +18,6 @@ from .utils import recognizer_utils as recognizer_utils
 import os
 import numpy as np
 from tensorflow.keras.models import model_from_json
-#from keras.models import load_weights
 import time
 import shutil
 import base64
@@ -77,17 +76,15 @@ refersh_data = True
 letter = 'I'
 idx = 0
 
+
 def get_bbox(img_src, detection_graph, sess, score_thresh):
     """
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-nhands',
-        '--num_hands',
-        dest='num_hands',
-        type=int,
-        default=1,
-        help='Max number of hands to detect.')
-    args = parser.parse_args()
+    get bouding box for the hand, basically checking if there is hand
+    :param img_src: 
+    :param detection_graph: 
+    :param sess: 
+    :param score_thresh: 
+    :return: True if there is hand, False if not
     """
     if img_src is None:
         print('Load Fail')
@@ -103,7 +100,13 @@ def get_bbox(img_src, detection_graph, sess, score_thresh):
         else:
             return False
 
+
 def data_uri_to_cv2_img(uri):
+    """
+    convert uri to cv2 image
+    :param uri: 
+    :return: 
+    """
     encoded_data = uri.split(',')[1]
     nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -111,43 +114,41 @@ def data_uri_to_cv2_img(uri):
 
 @api_view(['GET', 'POST'])
 @renderer_classes([JSONRenderer, ])
-def get_classifier(request):
+def get_classification(request):
+    """
+    get gesture classification
+    :param request:
+    :return:
+    """
+
+    # load frozen inference graph for hand detector
     model_file = "/server/server/api/models/mobnet4f_cmu_adadelta_t1_model.pb"
     input_layer = "input_1"
     output_layer = "k2tfout_0"
-
     detection_graph, sess = detector_utils.load_inference_graph()
     sess = tf.compat.v1.Session(graph=detection_graph)
     score_thresh = 0.1
-
     stride = 4
     boxsize = 224
-
     estimator = Estimator(model_file, input_layer, output_layer)
-
-    # json_file = open('rec_model.json', 'r')
-    json_file = open('/server/server/api/rec_model.json', 'r')
+    # load gesture classification model
+    json_file = open('/server/server/api/rec_model_new_3k.json', 'r')
     rec_model_json = json_file.read()
     json_file.close()
     rec_model = model_from_json(rec_model_json)
-    # rec_model.load_weights("rec_model_4epochs.h5")
-    rec_model.load_weights("/server/server/api/rec_model_17epochs.h5")
+    rec_model.load_weights("/server/server/api/rec_model_new_3k13epochs.h5")
     print("Loaded rec model from disk")
 
     cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_BRIGHTNESS, 0.4)
 
-    paused = True
-    delay = {False: 1, True: 0}
-
-    k = 0
-
+    # if received request,
     if request.method == 'POST':
         print(request.data.get('uri'))
         img_uri = request.data.get('uri')
         frame = data_uri_to_cv2_img(img_uri)
         if get_bbox(frame, detection_graph, sess, score_thresh):
-
+            # resize input image to meet network input layer dimensions
             crop_res = cv2.resize(frame, (boxsize, boxsize))
             img, pad = preprocess(crop_res, boxsize, stride)
 
@@ -162,7 +163,7 @@ def get_classifier(request):
             result = rec_model.predict(im)
             # Gives the result
             result_letter = map_characters[np.argmax(result[0])]
-
+            # return the prediction
             return Response({'content': str(result_letter)})
         else:
             return Response({'content': 'Please move hand to the center'})
@@ -178,6 +179,7 @@ def get_tutorial(request):
         'numbers': numbers,
         'alphabets': alphabets
     })
+
 
 @api_view(['POST'])
 @renderer_classes([JSONRenderer, ])
