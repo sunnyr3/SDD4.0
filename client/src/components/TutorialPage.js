@@ -12,15 +12,19 @@ class TutorialPage extends Component {
         super(props);
         this.state = {
             route: props.match.url,
-            
+
+
+          
             numbers: {'1': 'https://i.ibb.co/R40rKGC/1.jpg',
                       '2': 'https://i.ibb.co/HNLRcDw/2.jpg',
                       '3': 'https://i.ibb.co/W27Gr39/3.jpg'},
             alphabets: {'a': 'https://i.ibb.co/TLkkghg/A.png',
                         'b': 'https://i.ibb.co/BNsLzvS/B.png',
                         'c': 'https://i.ibb.co/fGKzr5F/C.png',
-                        'd': 'https://i.ibb.co/G962j3F/D.png' },
-            
+                        'd': 'https://i.ibb.co/G962j3F/D.png',
+                        'e': 'https://i.ibb.co/JKbBPSX/E.png',
+                         'f': 'https://i.ibb.co/ZBCqD8V/F.png',
+                        'g': 'https://i.ibb.co/9Hjc9yx/G.png'},            
         };
     }
 
@@ -35,27 +39,41 @@ class TutorialPage extends Component {
         });
     }
 */
+
+getmapsize = (m) => {
+        var len = 0;
+       
+        for (var count in m) {
+            len++;
+        }
+        return len;
+}
+
+
+
     render() {
       return(
         <PageFrame>
             <Container>
-
+                
                 <div className="folders-preview">
+                
                     <div className="numbers">
                         <Fcards cards = {this.state.numbers} 
-                         name = 'numbers' />  
+                         name = 'numbers' 
+                         length = {this.getmapsize(this.state.numbers)}/>  
                     </div>
-
-                    <div className="alphabets">
+                    <div className="alphabets"> 
                         <Fcards cards = {this.state.alphabets}
-                         name = 'alphabets'/>  
+                         name = 'alphabets'
+                         length = {this.getmapsize(this.state.alphabets)}/>  
                     </div>
 
                 </div>
+                
                 <div className="page-foot">
                     <strong>Welcome to TutorialPage!</strong>
                 </div>
-
             </Container>
         </PageFrame>
       );

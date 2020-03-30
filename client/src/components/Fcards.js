@@ -1,8 +1,5 @@
 
 import React, { Component } from 'react';
-//import { Container} from 'reactstrap';
-//import { Link } from 'react-router-dom';
-//import Popup from "reactjs-popup";
 import './Fcards.css';
 import Card from './Card';
 class Fcards extends Component{
@@ -18,7 +15,7 @@ class Fcards extends Component{
 		this.ShowPrevCard = this.prevCard.bind(this);
     	this.ShowNextCard = this.nextCard.bind(this)
 	}
-
+    
     closebutton = () => {
     	this.setState({
       	   pop: !this.state.pop,
@@ -59,7 +56,7 @@ class Fcards extends Component{
 
 	nextCard() {
         var index = this.state.currentCard;
-        const length = 3;
+        const length = this.props.length;
     	//const length = this.state.cards.length;
     	if (index < length - 1) {
             index++;
@@ -88,8 +85,9 @@ class Fcards extends Component{
 					</button>
     		    
                	</div>
-
-
+               	<div className = "title">
+               		<font color = "white" >{this.props.name}</font>
+               	</div>
    				{this.state.pop? <Card eng = {this.state.key}
     				   		img = {this.props.cards[this.state.key]}
     				   		practice = {this.state.isPractice}
