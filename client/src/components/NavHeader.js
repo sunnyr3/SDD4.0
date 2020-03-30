@@ -23,7 +23,7 @@ export const NavHeader = () => {
                             <Link className="nav-link" to={"/"}>Home</Link>
                         </NavItem>
                         <NavItem className="nav-item">
-                            <Link className="nav-link" to={"/TutorialPage"}>Tutorials</Link>
+                            <Link className="nav-link" to={"/tutorial"}>Tutorials</Link>
                         </NavItem>
                         <NavItem className="nav-item">
                             <a className="nav-link" href="https://github.com/sunnyr3/SDD4.0">GitHub</a>
@@ -45,7 +45,7 @@ export const NavHeader = () => {
                     <Link className="nav-link" to={"/"}>Home</Link>
                 </li>
                 <li className="nav-item active">
-                    <Link className="nav-link" to={"/TutorialPage"}>Tutorials</Link>
+                    <Link className="nav-link" to={"/tutorial"}>Tutorials</Link>
                 </li>
                 <li className="nav-item active">
                     <a className="nav-link" href="https://github.com/sunnyr3/SDD4.0">GitHub</a>
