@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container} from 'reactstrap';
 import PageFrame from './PageFrame';
 import './Search.css';
+import axios from 'axios';
 
 class Search extends Component {
   constructor(props) {
@@ -20,16 +21,26 @@ class Search extends Component {
     this.setState({value: event.target.value.toLowerCase()});
   }
 
-  /*
-  need some work here
+  
 
   handleSubmit(event) {
     event.preventDefault();
+    /*
     const array = ["1", "2", "3"];
     const images = array.map(image => {
       return <img key={image} src={require(`./resources/${image}.jpg`)} alt={image} className="img-output" />
+    });*/
+    axios({
+      method: 'post',
+      url: "http://localhost:8000/search/",
+      data: {key: this.state.value}
+    }).then((res) => {
+      console.log(res.data);
+      this.setState({
+        result: res.data
+      });
     });
-  }*/
+  }
 
   render() {
       return (
