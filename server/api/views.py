@@ -1,28 +1,14 @@
 from __future__ import print_function
-from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import MultiPartParser, FormParser
-from .serializers import ImageSerializer
-from .models import Image
-
-from .common.mva19 import Estimator, preprocess
-import numpy as np
+from .Classifier import Classifier
 import cv2
-import time
-import argparse
-import tensorflow as tf
-from .utils import detector_utils as detector_utils
-from .utils import recognizer_utils as recognizer_utils
-import os
 import numpy as np
-from tensorflow.keras.models import model_from_json
-#from keras.models import load_weights
-import time
-import shutil
 import base64
+import os
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # Links for each sign language picture to online image server
 numbers = {
@@ -66,107 +52,34 @@ alphabets = {
     'z': 'https://i.ibb.co/rxhfVdt/Z.png',
 }
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-map_characters = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'J', 10: 'K', 11: 'L', 12: 'M', 13: 'N', 14: 'O', 15: 'P', 16: 'Q', 17: 'R', 18: 'S', 19: 'T', 20: 'U', 21: 'V', 22: 'W', 23: 'X', 24: 'Y', 25: 'Z'}
-# map_characters = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'L'}
-
-generating_dataset = False
-
-refersh_data = True
-
-letter = 'I'
-idx = 0
-
-def get_bbox(img_src, detection_graph, sess, score_thresh):
-    """
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '-nhands',
-        '--num_hands',
-        dest='num_hands',
-        type=int,
-        default=1,
-        help='Max number of hands to detect.')
-    args = parser.parse_args()
-    """
-    if img_src is None:
-        print('Load Fail')
-    else:
-        boxes, scores = detector_utils.detect_objects(
-            img_src, detection_graph, sess)
-        boxes_to_recog, scores_to_show = detector_utils.draw_box_on_image(
-            1, score_thresh, scores, boxes,
-            img_src.shape[1], img_src.shape[0], img_src)
-        boxes_roi = boxes_to_recog
-        if len(boxes_roi) > 0:
-            return True
-        else:
-            return False
 
 def data_uri_to_cv2_img(uri):
+    """
+    convert uri to cv2 image
+    :param uri: 
+    :return: 
+    """
     encoded_data = uri.split(',')[1]
     nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     return img
 
+
 @api_view(['GET', 'POST'])
 @renderer_classes([JSONRenderer, ])
-def get_classifier(request):
-    model_file = "/server/server/api/models/mobnet4f_cmu_adadelta_t1_model.pb"
-    input_layer = "input_1"
-    output_layer = "k2tfout_0"
-
-    detection_graph, sess = detector_utils.load_inference_graph()
-    sess = tf.compat.v1.Session(graph=detection_graph)
-    score_thresh = 0.1
-
-    stride = 4
-    boxsize = 224
-
-    estimator = Estimator(model_file, input_layer, output_layer)
-
-    # json_file = open('rec_model.json', 'r')
-    json_file = open('/server/server/api/rec_model.json', 'r')
-    rec_model_json = json_file.read()
-    json_file.close()
-    rec_model = model_from_json(rec_model_json)
-    # rec_model.load_weights("rec_model_4epochs.h5")
-    rec_model.load_weights("/server/server/api/rec_model_17epochs.h5")
-    print("Loaded rec model from disk")
-
-    cap = cv2.VideoCapture(0)
-    cap.set(cv2.CAP_PROP_BRIGHTNESS, 0.4)
-
-    paused = True
-    delay = {False: 1, True: 0}
-
-    k = 0
-
+def get_classification(request):
+    classifier = Classifier(
+        gesture_classifier_model_path='/server/server/api/models/rec_model_new_3k.json',
+        gesture_classifier_weight_path='/server/server/api/models/rec_model_new_3k13epochs.h5',
+        detector_ckpt_path='/server/server/api/models/frozen_inference_graph_2.pb',
+        inference_model_path='/server/server/api/models/mobnet4f_cmu_adadelta_t1_model.pb'
+    )
     if request.method == 'POST':
-        print(request.data.get('uri'))
+        # print(request.data.get('uri'))
         img_uri = request.data.get('uri')
         frame = data_uri_to_cv2_img(img_uri)
-        if get_bbox(frame, detection_graph, sess, score_thresh):
-
-            crop_res = cv2.resize(frame, (boxsize, boxsize))
-            img, pad = preprocess(crop_res, boxsize, stride)
-
-            hm = estimator.predict(img)
-
-            hm = cv2.resize(hm, (0, 0), fx=stride, fy=stride)
-            bg = cv2.normalize(hm[:, :, -1], None, 0, 255, cv2.NORM_MINMAX, cv2.CV_8UC1)
-
-            im = cv2.cvtColor(bg, cv2.COLOR_GRAY2BGR)
-            im = cv2.resize(im, (100, 100))
-            im = np.expand_dims(im, axis=0)
-            result = rec_model.predict(im)
-            # Gives the result
-            result_letter = map_characters[np.argmax(result[0])]
-
-            return Response({'content': str(result_letter)})
-        else:
-            return Response({'content': 'Please move hand to the center'})
-
+        result = classifier.get_result(frame)
+        return Response({'content': result})
     return Response()
 
 
@@ -178,6 +91,7 @@ def get_tutorial(request):
         'numbers': numbers,
         'alphabets': alphabets
     })
+
 
 @api_view(['POST'])
 @renderer_classes([JSONRenderer, ])
