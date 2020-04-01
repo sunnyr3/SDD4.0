@@ -13,7 +13,8 @@ class TutorialPage extends Component {
         this.state = {
             route: props.match.url,  
 
-            //sign language & explanation data
+            //initialized sign language & translation data 
+
             numbers: {'initial': 'initial'},
                       
             alphabets: {'initial': 'initail'}
@@ -21,7 +22,16 @@ class TutorialPage extends Component {
         };
     }
 
-
+//function to access data of maps from backend
+componentDidMount() {
+        axios.get("http://localhost:8000/tutorial/").then((res) => {
+            console.log(res.data);
+            this.setState({
+                numbers: res.data.numbers,
+                alphabets: res.data.alphabets
+            });
+        });
+}
 
 //function to get the size of a folder(map)
     getmapsize = (m) => {
@@ -30,18 +40,6 @@ class TutorialPage extends Component {
             len++;
         }
         return len;
-    }
-
-
-//get data of sing languages tutorial from back-end
-    componentDidMount() {
-        axios.get("http://localhost:8000/tutorial/").then((res) => {
-            console.log(res.data);
-            this.setState({
-                numbers: res.data.numbers,
-                alphabets: res.data.alphabets
-            });
-        });
     }
 
 
