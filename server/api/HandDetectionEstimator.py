@@ -20,6 +20,7 @@ class HandDetectionEstimator(object):
         """
         if img_src is None:
             print('Load Fail')
+            return False
         else:
             boxes, scores = self.detect_objects(
                 img_src, self.graph, self.sess)

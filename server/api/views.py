@@ -69,7 +69,8 @@ def data_uri_to_cv2_img(uri):
 @renderer_classes([JSONRenderer, ])
 def get_classification(request):
     classifier = Classifier(
-        gesture_classifier_model_path='/server/server/api/models/rec_model_new_3k.json',
+        # gesture_classifier_model_path='/server/server/api/models/rec_model_new_3k.json',
+        gesture_classifier_model_path='/server/server/api/models/gesture_svm.pkl',
         gesture_classifier_weight_path='/server/server/api/models/rec_model_new_3k13epochs.h5',
         detector_ckpt_path='/server/server/api/models/frozen_inference_graph_2.pb',
         inference_model_path='/server/server/api/models/mobnet4f_cmu_adadelta_t1_model.pb'
