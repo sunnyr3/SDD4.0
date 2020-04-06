@@ -7,7 +7,7 @@ django-cors-headers==3.2.1
 numpy
 tensorflow
 tensorflow-gpu
-opencv-python
+opencv-python==3.4.8.29
 protobuf
 Keras
 Pillow

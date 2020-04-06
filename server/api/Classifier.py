@@ -24,6 +24,6 @@ class Classifier(object):
         """
         if self.detector.check_if_hand_present(frame):
             inference_bg = self.inferencer.get_bg(frame)
-            return self.gesture_classifier.get_result(inference_bg)
+            return self.gesture_classifier.get_result(inference_bg, frame)
         else:
             return "Please move hand to the center"

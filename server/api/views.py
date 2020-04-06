@@ -53,9 +53,9 @@ alphabets = {
 }
 
 classifier = Classifier(
-    gesture_classifier_model_path='/server/server/api/models/rec_model_new_3k.json',
+    gesture_classifier_model_path='/server/server/api/models/rec_hello.json',
     # gesture_classifier_model_path='/server/server/api/models/gesture_svm.pkl',
-    gesture_classifier_weight_path='/server/server/api/models/rec_model_new_3k13epochs.h5',
+    gesture_classifier_weight_path='/server/server/api/models/rec_hello_90_epochs.h5',
     detector_ckpt_path='/server/server/api/models/frozen_inference_graph_2.pb',
     inference_model_path='/server/server/api/models/mobnet4f_cmu_adadelta_t1_model.pb'
 )
