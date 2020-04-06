@@ -1,7 +1,6 @@
 import React, { Component, useState} from 'react';
 import { Button, Col, Row } from 'reactstrap';
 import PageFrame from './PageFrame';
-import * as handTrack from 'handtrackjs';
 import Camera, { FANCING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import ImagePreview from './ImagePreview';

@@ -103,10 +103,8 @@ def search(request):
     res = []
     for c in searchkey:
         if c in numbers:
-            temp = {c: numbers[c]}
-            res.append(temp)
-        else:
-            temp = {c: alphabets[c]}
-            res.append(temp)
+            res.append(numbers[c])
+        elif c in alphabets:
+            res.append(alphabets[c])
 
     return Response(res)
