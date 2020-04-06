@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container} from 'reactstrap';
+import { Container, InputGroup, InputGroupAddon, Button, Input, Table } from 'reactstrap';
 import PageFrame from './PageFrame';
 import './Search.css';
 import axios from 'axios';
@@ -9,11 +9,11 @@ class Search extends Component {
     super(props);
     this.state = {
         value: '',
-        result: ''
+        result: undefined
     };
 
     this.handleChange = this.handleChange.bind(this);
-    //this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -47,8 +47,15 @@ class Search extends Component {
           <PageFrame>
               <Container>
                   <div class = "main title">
-                      <h1>Translate English into the American Sign Language(ASL)</h1>
+                      <h2>Translate English into the American Sign Language(ASL)</h2>
                   </div>
+                  <InputGroup>
+                      <Input value={this.state.value} onChange={this.handleChange} placeholder="Enter English here..." />
+                      <InputGroupAddon addonType="append">
+                          <Button color="primary" onClick={this.handleSubmit}>Translate</Button>
+                      </InputGroupAddon>
+                  </InputGroup>
+                  {/*
                   <div class = "Translater-container">
                       <div class = "translater-left-container">
                           <div class = "English">
@@ -58,11 +65,13 @@ class Search extends Component {
                       <div class = "translater-right-container">
                         <div class = "sign">
 
-
-                        {/* Need some work here*/}
                         <div class = "Sign-output">
-                          {this.state.result !== '' ? (
-                              <div id="result"> {this.result} </div>
+                          {this.state.result !== undefined ? (
+                              <div id="result">
+                                  {Object.keys(this.state.result).forEach((key) => (
+                                      <img src={this.state.result[key]} />
+                                  ))}
+                              </div>
                             ) : ('Translation result will appear here...')}
                         </div>
 
@@ -76,7 +85,18 @@ class Search extends Component {
                     <form onSubmit={this.handleSubmit}>
                       <input class = "translate" type="submit" value="Translate" />
                     </form>
-                  </div>
+                  </div>*/}
+              </Container>
+              <Container>
+                  {this.state.result !== undefined ? (
+                    <Table borderless>
+                        <tr>
+                          {this.state.result.map((item, index) => (
+                              <td><img src={item} /></td>
+                          ))}
+                        </tr>
+                    </Table>
+                  ) : ('')}
               </Container>
           </PageFrame>
       );
