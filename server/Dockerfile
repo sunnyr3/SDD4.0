@@ -18,5 +18,5 @@ ADD . /server/
 ENV PYTHONPATH "${PYTHONPATH}:/server"
 
 # Install any required packages specified in requirements.txt
-RUN pip install psycopg2
+# RUN pip install psycopg2
 RUN pip install -r requirements.txt
