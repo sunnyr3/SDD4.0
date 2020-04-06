@@ -39,31 +39,8 @@ class Webcam extends Component {
         this.setState({imguri: undefined, closeWebcam: false});
     }
 
-    dataURItoBlob() {
-        var byteString;
-        var imguri = this.state.imguri;
-        if (imguri.split(',')[0].indexOf('base64') >= 0)
-            byteString = atob(imguri.split(',')[1]);
-        else
-            byteString = unescape(imguri.split(',')[1])
-        
-        var ia = new Uint8Array(byteString.length);
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-
-        return new Blob([ia], {type: 'image/jpeg'});
-    }
-
     handleSubmitImage(e) {
         e.preventDefault();
-        /*
-        var blob = this.dataURItoBlob();
-        console.log(blob);
-        var fd = new FormData();
-        fd.append("image", blob, "hand.jpeg");
-        console.log(fd);
-        */
         var postdata = {
             'uri': this.state.imguri
         }

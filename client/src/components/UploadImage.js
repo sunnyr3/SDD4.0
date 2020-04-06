@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Container, Col, Spinner, Row } from 'reactstrap';
 import PageFrame from './PageFrame';
-import * as handTrack from 'handtrackjs';
-import './MainPage.css';
+import './UploadImage.css';
+import axios from 'axios';
 
-class MainPage extends Component {
+class UploadImage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             image: undefined,
             imagePreviewUrl: undefined,
+            imgContent: undefined,
             waiting: false,
             loading: false
         };
@@ -20,7 +21,7 @@ class MainPage extends Component {
         e.preventDefault();
 
         // Reference to https://github.com/victordibia/handtrack.js/#loading-the-model-handtrackload
-        const img = document.getElementById('img');
+        /*const img = document.getElementById('img');
 
         const modelParams = {
             flipHorizontal: false,   // flip e.g for video 
@@ -38,8 +39,22 @@ class MainPage extends Component {
                 console.log('Predictions: ', predictions);
            //     bbox = predictions.bbox;
             });
+        }); */
+        
+        var postdata = {
+            'uri': this.state.imagePreviewUrl
+        };
+
+        axios({
+            method: 'post',
+            url: "http://localhost:8000/main/",
+            data: postdata
+        }).then((res) => {
+            console.log(res.data);
+            this.setState({
+                imgContent: res.data.content
+            });
         });
-        // TODO: pass image to backend
     }
 
     onHandleImageChange(e) {
@@ -49,6 +64,7 @@ class MainPage extends Component {
 
         let file = e.target.files[0];
         reader.onloadend = e => {
+            console.log(reader.result);
             this.setState({
                 image: file,
                 imagePreviewUrl: reader.result
@@ -78,6 +94,9 @@ class MainPage extends Component {
                                 ) : ('')}
                             </div>
                         </Col>
+                        <Col>
+                            <h5>{this.state.imgContent}</h5>
+                        </Col>
                     </Row>
                 </Container>
             </PageFrame>
@@ -85,4 +104,4 @@ class MainPage extends Component {
     }
 }
 
-export default MainPage;
+export default UploadImage;
