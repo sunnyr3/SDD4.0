@@ -25,11 +25,6 @@ class Search extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    /*
-    const array = ["1", "2", "3"];
-    const images = array.map(image => {
-      return <img key={image} src={require(`./resources/${image}.jpg`)} alt={image} className="img-output" />
-    });*/
     axios({
       method: 'post',
       url: "http://localhost:8000/search/",
