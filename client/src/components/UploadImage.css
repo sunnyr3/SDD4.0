@@ -4,9 +4,12 @@
 
 .image-input {
     border: 3px solid #9fbec9;
-    padding: 10px;
-    margin: 15px;
+    padding: 5px;
     cursor: pointer;
+}
+
+.btn {
+    margin: 5px;
 }
 
 .img-preview-div {
@@ -22,21 +25,7 @@
     height: 100%;
 }
 
-.upload-img-btn {
-    display: inline-block;
-    padding: 8px 18px;
-    font-size: 18px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #0378A3;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px #999;
-}
-
-.upload-img-btn:hover {
-    background-color: #005a7a;
+.hand-gesture-img {
+    width: 20%;
+    height: 20%;
 }

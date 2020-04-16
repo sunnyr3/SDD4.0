@@ -43,7 +43,8 @@ class Webcam extends Component {
     handleSubmitImage(e) {
         e.preventDefault();
         var postdata = {
-            'uri': this.state.imguri
+            'uri': this.state.imguri,
+            'has_multiple': 'false'
         }
         axios({
             method: 'post',

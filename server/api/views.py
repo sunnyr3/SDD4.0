@@ -77,11 +77,20 @@ def data_uri_to_cv2_img(uri):
 @renderer_classes([JSONRenderer, ])
 def get_classification(request):
     if request.method == 'POST':
-        # print(request.data.get('uri'))
         img_uri = request.data.get('uri')
-        frame = data_uri_to_cv2_img(img_uri)
-        result = classifier.get_result(frame)
-        return Response({'content': result})
+        has_multiple = request.data.get('has_multiple')
+
+        if has_multiple == 'true':
+            results = []
+            for uri in img_uri:
+                frame = data_uri_to_cv2_img(uri)
+                result = classifier.get_result(frame)
+                results.append(result)
+            return Response({'content': results})
+        else:
+            frame = data_uri_to_cv2_img(img_uri)
+            result = classifier.get_result(frame)
+            return Response({'content': result})
     return Response()
 
 
