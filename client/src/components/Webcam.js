@@ -1,5 +1,5 @@
 import React, { Component, useState} from 'react';
-import { Button, Col, Row } from 'reactstrap';
+import { Button, Col, Row, ListGroup, ListGroupItem } from 'reactstrap';
 import PageFrame from './PageFrame';
 import Camera, { FANCING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
@@ -15,6 +15,7 @@ class Webcam extends Component {
             closeWebcam: false,
             isFullScreen: false,
             imgContent: undefined,
+            imgContents: [],
             loading: true,
         }
     }
@@ -50,8 +51,13 @@ class Webcam extends Component {
             data: postdata
         }).then((res) => {
             console.log(res.data);
+            var newResault = {'result': res.data.content};
+            var newContents = this.state.imgContents;
+            newContents.push(newResault);
             this.setState({
-                imgContent: res.data.content
+                imgContent: res.data.content,
+                imgContents: newContents,
+                closeWebcam: false,
             });
         });
     }
@@ -83,7 +89,13 @@ class Webcam extends Component {
                         {content}
                     </Col>
                     <Col>
-                        <h5>{this.state.imgContent}</h5>
+                        {this.state.imgContents.length !== 0 && (
+                            <ListGroup>
+                                {this.state.imgContents.map((item, key) => (
+                                    <ListGroupItem>{item.result}</ListGroupItem>
+                                ))}
+                            </ListGroup>
+                        )}
                     </Col>
                 </Row>
             </PageFrame>
