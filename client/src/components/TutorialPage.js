@@ -12,18 +12,14 @@ class TutorialPage extends Component {
 
         this.state = {
             route: props.match.url,  
-
             //initialized sign language & translation data 
-
             numbers: {'initial': 'initial'},
-                      
             alphabets: {'initial': 'initail'}
-                  
         };
     }
 
-//function to access data of maps from backend
-componentDidMount() {
+    //function to access data of maps from backend
+    componentDidMount() {
         axios.get("http://localhost:8000/tutorial/").then((res) => {
             console.log(res.data);
             this.setState({
@@ -31,9 +27,9 @@ componentDidMount() {
                 alphabets: res.data.alphabets
             });
         });
-}
+    }
 
-//function to get the size of a folder(map)
+    //function to get the size of a folder(map)
     getmapsize = (m) => {
         var len = 0; 
         for (var count in m) {
@@ -42,22 +38,20 @@ componentDidMount() {
         return len;
     }
 
-
-
     render() {
         return(
             <PageFrame>
                 <Container>    
                     <div className="folders-preview">                     
                         <div className="numbers">                          
-                            <Fcards cards = {this.state.numbers}                /*card folder data*/
-                             name = 'numbers'                                   /*card folder type*/
-                             length = {this.getmapsize(this.state.numbers)}/>   
+                            <Fcards cards = {this.state.numbers}                        /*card folder data*/
+                                    name = 'numbers'                                   /*card folder type*/
+                                    length = {this.getmapsize(this.state.numbers)}/>   
                         </div>
                         <div className="alphabets">        
                             <Fcards cards = {this.state.alphabets}
-                             name = 'alphabets'
-                             length = {this.getmapsize(this.state.alphabets)}/>  
+                                    name = 'alphabets'
+                                    length = {this.getmapsize(this.state.alphabets)}/>  
                         </div>
                     </div>             
                     <div className="page-foot">           
@@ -70,4 +64,3 @@ componentDidMount() {
 }
 
 export default TutorialPage;
-

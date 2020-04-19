@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Col, Button, Spinner, Row } from 'reactstrap';
+import { Col, Button, Row } from 'reactstrap';
 import PageFrame from './PageFrame';
 
 class MainScreen extends Component {

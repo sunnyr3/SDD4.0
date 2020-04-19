@@ -1,7 +1,7 @@
-import React, { Component, useState} from 'react';
+import React, { Component } from 'react';
 import { Button, Col, Row, ListGroup, ListGroupItem } from 'reactstrap';
 import PageFrame from './PageFrame';
-import Camera, { FANCING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
+import Camera, { IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import ImagePreview from './ImagePreview';
 import axios from 'axios';
@@ -12,10 +12,8 @@ class Webcam extends Component {
 
         this.state = {
             imguri: undefined,
-            closeWebcam: false,
-            isFullScreen: false,
-            imgContent: undefined,
             imgContents: [],
+            closeWebcam: false,
             loading: true,
         }
     }
@@ -26,22 +24,29 @@ class Webcam extends Component {
         });
     }
 
+    // Function to handle closing webcase
     onCloseWebcam(e) {
         e.preventDefault();
         this.setState({closeWebcam: true});
     }
 
+    // Function to handle taking picture
     handleTakePhoto(imguri) {
         this.setState({imguri: imguri, closeWebcam: true});
     }
 
+    // Function to handle cancelling picture
     handleCancelImage(e) {
         e.preventDefault();
         this.setState({imguri: undefined, closeWebcam: false});
     }
 
+    // Function to submit picture to backemnd
     handleSubmitImage(e) {
         e.preventDefault();
+
+        // Data for POST request
+        // uri is the webcam image uri
         var postdata = {
             'uri': this.state.imguri,
             'has_multiple': 'false'
@@ -70,7 +75,7 @@ class Webcam extends Component {
                 <div>
                     <Camera
                         onTakePhotoAnimationDone={dataUri => {this.handleTakePhoto(dataUri)}}
-                        isFullScreen={this.state.isFullScreen}
+                        isFullScreen={false}
                         imageType = {IMAGE_TYPES.JPG}
                     />
                     <Button color="secondary" onClick={e => {this.onCloseWebcam(e)}}>Close Webcam</Button>

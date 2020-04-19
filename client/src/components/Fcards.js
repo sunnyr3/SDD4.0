@@ -1,9 +1,8 @@
-
 import React, { Component } from 'react';
 import './Fcards.css';
 import Card from './Card';
+
 class Fcards extends Component{
-     
     constructor(props){
 		super(props);
 
@@ -65,7 +64,7 @@ class Fcards extends Component{
         const length = this.props.length;
     	if (index < length - 1) { //switch iff current is not last card
             index++;
-         }
+        }
     	this.setState({
       		currentCard: index,
       		key: Object.keys(this.props.cards)[this.state.currentCard]
@@ -88,23 +87,18 @@ class Fcards extends Component{
                		<div className = "title">
                			<font color = "white" >{this.props.name}</font>
                		</div>
-   					{this.state.pop? <Card eng = {this.state.key}
-    				 img = {this.props.cards[this.state.key]}
-    				 practice = {this.state.isPractice}
-    				 prevCard = {this.ShowPrevCard}
-    				 nextCard = {this.ShowNextCard}
-    				 closew = {this.closebutton} />: null}	
+   					{this.state.pop ? (
+					   	<Card eng = {this.state.key}
+    				 		img = {this.props.cards[this.state.key]}
+    				 		practice = {this.state.isPractice}
+    				 		prevCard = {this.ShowPrevCard}
+    				 		nextCard = {this.ShowNextCard}
+							 closew = {this.closebutton} />) : 
+						null}	
     			</div>
    			</div>
-
 		);
-
 	}
-
 }
 
-
-
 export default Fcards;
-
-
