@@ -12,17 +12,20 @@ class UploadImage extends Component {
             imgs: [],
             imgUrls: [],
             imgResults: [],
-            image: undefined,
-            imagePreviewUrl: undefined,
-            imgContent: undefined,
-            waiting: false,
             loading: false
         };
     }
 
     onHandleSubmit(e) {
         e.preventDefault();
+
+        // Before getting the result, set loading to be true
+        this.setState({
+            loading: true
+        });
         
+        // Data for POST request
+        // uri is an array that contains uri of all images
         var postdata = {
             'uri': this.state.imgUrls,
             'has_multiple': 'true',
@@ -35,7 +38,8 @@ class UploadImage extends Component {
         }).then((res) => {
             console.log(res.data.content);
             this.setState({
-                imgResults: res.data.content
+                imgResults: res.data.content,
+                loading: false
             });
         });
     }
@@ -46,6 +50,8 @@ class UploadImage extends Component {
         console.log(e.target.files.length);
         var newImgs = this.state.imgs;
         var newImgUrls = this.state.imgUrls;
+
+        // Iterate through all uploaded file and get the uri data
         for (var i = 0; i < e.target.files.length; i++) {
             let reader = new FileReader();
             let file = e.target.files[i];
@@ -71,10 +77,6 @@ class UploadImage extends Component {
     }
 
     render() {
-        if (this.state.loading) {
-            return (<PageFrame><Spinner/></PageFrame>);
-        }
-
         return (
             <PageFrame>
                 <Container>
@@ -92,16 +94,11 @@ class UploadImage extends Component {
                                     ))}
                                 </div>
                             )}
-                            
-                            {/*
-                            <div className="img-preview-div">
-                                {this.state.imagePreviewUrl !== undefined ? (
-                                    <img id="img" src={this.state.imagePreviewUrl} alt = "sign language" />
-                                ) : ('')}
-                            </div> 
-                            */}
                         </Col>
                         <Col>
+                            {this.state.loading ? (
+                                <Spinner></Spinner>
+                            ) : ('')}
                             {this.state.imgResults.length !== 0 && (
                                 <ListGroup>
                                     {this.state.imgResults.map((item, key) => (

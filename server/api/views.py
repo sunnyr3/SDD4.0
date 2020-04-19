@@ -75,6 +75,7 @@ def data_uri_to_cv2_img(uri):
 @api_view(['GET', 'POST'])
 @renderer_classes([JSONRenderer, ])
 def get_classification(request):
+    """ API endpoint for translating image to character """
     if request.method == 'POST':
         img_uri = request.data.get('uri')
         has_multiple = request.data.get('has_multiple')
@@ -106,7 +107,7 @@ def get_tutorial(request):
 @api_view(['POST'])
 @renderer_classes([JSONRenderer, ])
 def search(request):
-    print(request.data)
+    """ API endpoint for search """
     searchkey = request.data.get("key")
     searchkey = searchkey.lower()
     res = []
