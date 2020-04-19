@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad7e46bc-70d4-416d-b367-a096fd88f17b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/models/rec_hello.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/models/rec_hello_90_epochs.h5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/Classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/Classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/HandDetectionEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandDetectionEstimator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/HandGestureClassifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandGestureClassifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/HandInferenceEstimator.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandInferenceEstimator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/seg.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/seg.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +108,7 @@
       <updated>1585495898067</updated>
       <workItem from="1585495901657" duration="5680000" />
       <workItem from="1586132472980" duration="4346000" />
-      <workItem from="1587306942494" duration="885000" />
+      <workItem from="1587306942494" duration="2015000" />
     </task>
     <servers />
   </component>

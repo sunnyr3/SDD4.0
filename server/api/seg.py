@@ -7,11 +7,22 @@ import random as rng
 
 class segTool:
     def __init__(self, ori_, msk_):
+        """
+
+        :param ori_:
+        :param msk_:
+        """
         self.ori = ori_
         self.msk = msk_
 
     @staticmethod
     def cvx_hall(src_gray, val):
+        """
+
+        :param src_gray:
+        :param val:
+        :return: convex hull contours
+        """
         threshold = val
         # Detect edges using Canny
         canny_output = cv2.Canny(src_gray, threshold, threshold * 2)
@@ -19,9 +30,6 @@ class segTool:
         _, contours, _ = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         # Find the convex hull object for each contour
         hull_list = []
-        # for i in range(len(contours)):
-        #     hull = cv2.convexHull(contours[i])
-        #     hull_list.append(hull)
         if len(contours) > 0:
             contours = sorted(contours, key=cv2.contourArea, reverse=True)
             hull = cv2.convexHull(contours[0])
@@ -34,8 +42,13 @@ class segTool:
         return drawing, hull_list
 
     def get_seg(self):
+        """
+        get segmentation related values
+        :return: mask for the segmentation, convex hull segmented image, convex hull contours
+        """
         ret, gray_msk = cv2.threshold(self.msk, 127, 255, cv2.THRESH_BINARY_INV)
         kernel = np.ones((5, 5), np.uint8)
+        # dilate mask to increase room for errors
         gray_msk = cv2.dilate(gray_msk, kernel, iterations=2)
         cvx_hulled, cvx_lst = self.cvx_hall(gray_msk, 127)
         return gray_msk, cvx_hulled, cvx_lst

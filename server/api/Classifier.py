@@ -20,7 +20,7 @@ class Classifier(object):
         """
 
         :param frame:
-        :return:
+        :return: result of the classification
         """
         if self.detector.check_if_hand_present(frame):
             inference_bg = self.inferencer.get_bg(frame)

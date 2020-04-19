@@ -52,6 +52,7 @@ alphabets = {
     'z': 'https://i.ibb.co/rxhfVdt/Z.png',
 }
 
+# classifiers path, creating classifier
 classifier = Classifier(
     gesture_classifier_model_path='/server/server/api/models/rec.json',
     gesture_classifier_weight_path='/server/server/api/models/rec_90_epochs.h5',
@@ -64,7 +65,7 @@ def data_uri_to_cv2_img(uri):
     """
     convert uri to cv2 image
     :param uri: 
-    :return: 
+    :return: image matrix
     """
     encoded_data = uri.split(',')[1]
     nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
@@ -79,10 +80,11 @@ def get_classification(request):
     if request.method == 'POST':
         img_uri = request.data.get('uri')
         has_multiple = request.data.get('has_multiple')
-
+        # check if received image batch
         if has_multiple == 'true':
             results = []
             for uri in img_uri:
+                # begin image classification
                 frame = data_uri_to_cv2_img(uri)
                 result = classifier.get_result(frame)
                 results.append(result)

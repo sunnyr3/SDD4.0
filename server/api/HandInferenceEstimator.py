@@ -40,7 +40,7 @@ class HandInferenceEstimator(object):
         """
 
         :param frame:
-        :return:
+        :return: last layer output of inference key point
         """
         crop_res = cv2.resize(frame, (self.boxsize, self.boxsize))
         img, pad = self.preprocess(crop_res, self.boxsize, self.stride)
@@ -51,7 +51,7 @@ class HandInferenceEstimator(object):
         """
 
         :param img:
-        :return:
+        :return: converted last layer output of key points in image matrix form
         """
         hm = self.predict(img)
         hm = cv2.resize(hm, (0, 0), fx=self.stride, fy=self.stride)
@@ -66,7 +66,7 @@ class HandInferenceEstimator(object):
         :param img:
         :param stride:
         :param padValue:
-        :return:
+        :return: padded image
         """
         h = img.shape[0]
         w = img.shape[1]
@@ -94,7 +94,7 @@ class HandInferenceEstimator(object):
         """
 
         :param model_file:
-        :return:
+        :return: loaded tensorflow model
         """
         graph = tf.Graph()
         graph_def = tf.compat.v1.GraphDef()

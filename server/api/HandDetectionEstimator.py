@@ -33,7 +33,7 @@ class HandDetectionEstimator(object):
         :param image_np:
         :param detection_graph:
         :param sess:
-        :return:
+        :return: bounding boxes and scores of each bounding box
         """
         # Definite input and output Tensors for detection_graph
         image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
@@ -63,7 +63,7 @@ class HandDetectionEstimator(object):
         """
 
         :param path:
-        :return:
+        :return: loaded inference graph of the model
         """
         # load frozen tensorflow model into memory
         print("loading HAND frozen graph into memory")

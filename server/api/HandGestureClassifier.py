@@ -15,8 +15,6 @@ class HandGestureClassifier(object):
         :param weight_path:
         """
         self.model = self.load_keras_model(model_path, weight_path)
-        # self.model = self.load_svm_model(model_path)
-        # self.cluster_svm = self.load_svm_model('/server/server/api/models/cluster_svm.pkl')
 
         self.cell_size = (16, 16)  # h x w in pixels
         self.block_size = (2, 2)  # h x w in cells
@@ -45,14 +43,9 @@ class HandGestureClassifier(object):
     def get_result(self, bg, frame):
         """
 
-        :param bg:
+        :param bg: key point inference image
         :return:
         """
-        # im = cv2.cvtColor(bg, cv2.COLOR_GRAY2BGR)
-        # im = cv2.resize(im, (100, 100))
-        # im = np.expand_dims(im, axis=0)
-        # result = self.model.predict(im)
-        # result_letter = self.map_characters[np.argmax(result[0])]
 
         bg_100 = cv2.resize(bg, (100, 100))
         crop_res = cv2.resize(frame, (100, 100))
@@ -71,22 +64,6 @@ class HandGestureClassifier(object):
         else:
             result_letter = 'Please put hand closer to the camera'
 
-        # cluster_bg = cv2.resize(bg, (100, 100))
-        # h = self.hog.compute(cluster_bg)
-        # cv2.imwrite('bg.jpg', bg)
-        # result_cluster = self.map_cluster[self.cluster_svm.predict(np.asarray([h.flatten()]))[0]]
-        # if result_cluster == 'cluster_5':
-        #     result_cluster = 'H'
-        # elif result_cluster == 'cluster_1':
-        #     result_cluster = 'E'
-        # elif result_cluster == 'cluster_4':
-        #     result_cluster = 'L'
-        # elif result_cluster == 'cluster_3':
-        #     result_cluster = 'O'
-        # elif result_cluster == 'cluster_2':
-        #     result_cluster = 'U'
-        # result_letter = self.map_characters[self.model.predict(np.asarray([h.flatten()]))[0]]
-        # return str(result_letter)+'\n'+result_cluster
         return result_letter
 
     @staticmethod
@@ -95,7 +72,7 @@ class HandGestureClassifier(object):
 
         :param model_path:
         :param weight_path:
-        :return:
+        :return: loaded model
         """
         json_file = open(model_path, 'r')
         rec_model_json = json_file.read()
@@ -109,6 +86,6 @@ class HandGestureClassifier(object):
         """
 
         :param model_path:
-        :return:
+        :return: loaded SVM model
         """
         return pickle.load(open(model_path, 'rb'))
