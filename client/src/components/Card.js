@@ -14,26 +14,25 @@ class Card extends Component {
                 <div className = "card-model">
                     <span className="closewindow" onClick={this.handleClick}>
                         &times;
-                    </span>  
+                    </span>
                     <div className = "card-content">
                         <div className = 'card-img'>
-                            <img alt = {this.props.eng} src={this.props.img} 
-                            width = "200" height="200"/>
+                            <img alt = {this.props.eng} src={this.props.img}
+                                width = "200" height="200"/>
                         </div>
                         <div className = 'card-eng'>
                             {this.props.practice?  <font color = "white">What is this?
                             </font>:<font color = "white">{this.props.eng}</font> }
                         </div>
-                    </div>             
+                    </div>
                     <div className = "bottoms">
                         <button className="b1" onClick={() => this.props.prevCard()}>
                             Prev
                         </button>
                         <button className="b2" onClick={() => this.props.nextCard()}>
                             Next
-                        </button>                   
+                        </button>
                     </div>
-
                 </div> 
             </div> 
         );

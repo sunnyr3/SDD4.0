@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container} from 'reactstrap';
+import { Container } from 'reactstrap';
 import PageFrame from './PageFrame';
 import Fcards from './Fcards'
 import './TutorialPage.css';
@@ -42,10 +42,10 @@ class TutorialPage extends Component {
         return(
             <PageFrame>
                 <Container>    
-                    <div className="folders-preview">                     
+                    {/*<div className="folders-preview">                     
                         <div className="numbers">                          
-                            <Fcards cards = {this.state.numbers}                        /*card folder data*/
-                                    name = 'numbers'                                   /*card folder type*/
+                            <Fcards cards = {this.state.numbers}
+                                    name = 'numbers'
                                     length = {this.getmapsize(this.state.numbers)}/>   
                         </div>
                         <div className="alphabets">        
@@ -53,7 +53,13 @@ class TutorialPage extends Component {
                                     name = 'alphabets'
                                     length = {this.getmapsize(this.state.alphabets)}/>  
                         </div>
-                    </div>             
+                    </div>  */}                         
+                            <Fcards cards = {this.state.numbers}
+                                    name = 'numbers'
+                                    length = {this.getmapsize(this.state.numbers)}/>
+                            <Fcards cards = {this.state.alphabets}
+                                    name = 'alphabets'
+                                    length = {this.getmapsize(this.state.alphabets)}/>
                     <div className="page-foot">           
                         <strong>Welcome to TutorialPage!</strong>
                     </div>

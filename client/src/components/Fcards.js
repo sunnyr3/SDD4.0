@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Col, Row } from 'reactstrap';
 import './Fcards.css';
 import Card from './Card';
 
@@ -12,17 +13,17 @@ class Fcards extends Component{
  			currentCard: 0,				//current card index in card folder
  			key: Object.keys(this.props.cards)[0]
 		};
-										//card actions
+		//card actions
 		this.ShowPrevCard = this.prevCard.bind(this);
     	this.ShowNextCard = this.nextCard.bind(this)
 	}
     
     closebutton = () => {
     	this.setState({
-      	   pop: !this.state.pop,
-      	   isPractice: !this.state.pop,
-      	   currentCard: 0,
-      	   key: Object.keys(this.props.cards)[0]
+      		pop: !this.state.pop,
+      		isPractice: !this.state.pop,
+      		currentCard: 0,
+      		key: Object.keys(this.props.cards)[0]
     	});
  	};
 
@@ -43,7 +44,6 @@ class Fcards extends Component{
 			cards: this.props.cards,
 			key: Object.keys(this.props.cards)[this.state.currentCard]
 		});
-
 	}
 
 	//switch to previous card
@@ -69,34 +69,36 @@ class Fcards extends Component{
       		currentCard: index,
       		key: Object.keys(this.props.cards)[this.state.currentCard]
     	});
-
 	}
 
 	render(){
 		return(
-			<div className = "page">
-				<div className = "folder">
-               		<div className = "foler-box"> 
-                		<button className = "view-div" onClick = {() => this.viewToggle()}>
-							View
-						</button>
-						<button className = "prac-div" onClick = {() => this.practiceToggle()}>
-							Practice
-						</button>   
-              		</div>
-               		<div className = "title">
-               			<font color = "white" >{this.props.name}</font>
-               		</div>
-   					{this.state.pop ? (
+			<Row>
+				<Col>
+					<div className = "folder">
+               			<div className = "foler-box"> 
+                			<button className = "view-div" onClick = {() => this.viewToggle()}>
+								View
+							</button>
+							<button className = "prac-div" onClick = {() => this.practiceToggle()}>
+								Practice
+							</button>
+              			</div>
+               			<div className = "title">
+               				<font color = "white" >{this.props.name}</font>
+               			</div>
+    				</div>
+				</Col>
+				<Col>
+					{this.state.pop ? (
 					   	<Card eng = {this.state.key}
     				 		img = {this.props.cards[this.state.key]}
     				 		practice = {this.state.isPractice}
     				 		prevCard = {this.ShowPrevCard}
     				 		nextCard = {this.ShowNextCard}
-							 closew = {this.closebutton} />) : 
-						null}	
-    			</div>
-   			</div>
+							closew = {this.closebutton} />) : null}
+				</Col>
+   			</Row>
 		);
 	}
 }
