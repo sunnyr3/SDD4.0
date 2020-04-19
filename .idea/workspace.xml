@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ad7e46bc-70d4-416d-b367-a096fd88f17b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/Classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/Classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api/HandGestureClassifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/HandGestureClassifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/models/rec_hello.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api/models/rec_hello_90_epochs.h5" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/server/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +106,7 @@
       <updated>1585495898067</updated>
       <workItem from="1585495901657" duration="5680000" />
       <workItem from="1586132472980" duration="4346000" />
+      <workItem from="1587306942494" duration="885000" />
     </task>
     <servers />
   </component>
@@ -146,11 +146,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1585576735821" />
-    <state x="376" y="191" width="687" height="518" key="find.popup" timestamp="1585798159205">
+    <state x="376" y="191" width="687" height="518" key="find.popup" timestamp="1587318973844">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="376" y="191" width="687" height="518" key="find.popup/0.0.1440.900/-3440.-540.3440.1440@0.0.1440.900" timestamp="1585798159205" />
-    <state x="376" y="191" width="687" height="518" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1585578186787" />
+    <state x="376" y="191" width="687" height="518" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1587318973844" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SDD4_0$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1585577874921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/api" />
