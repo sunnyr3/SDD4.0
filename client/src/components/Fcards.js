@@ -18,10 +18,11 @@ class Fcards extends Component{
     	this.ShowNextCard = this.nextCard.bind(this)
 	}
     
-    closebutton = () => {
+    closeCar = () => {
+		var prevPop = this.state.pop;
     	this.setState({
-      		pop: !this.state.pop,
-      		isPractice: !this.state.pop,
+      		pop: !prevPop,
+      		isPractice: !prevPop,
       		currentCard: 0,
       		key: Object.keys(this.props.cards)[0]
     	});
@@ -31,6 +32,7 @@ class Fcards extends Component{
 	viewToggle = () =>{
 		this.setState({
 			pop: !this.state.pop,
+			isPractice: false,
 			cards: this.props.cards,
 			key: Object.keys(this.props.cards)[this.state.currentCard]
 		});
@@ -40,7 +42,7 @@ class Fcards extends Component{
 	practiceToggle = () =>{
 		this.setState({
 			pop: !this.state.pop,
-			isPractice: !this.state.isPractice,
+			isPractice: true,
 			cards: this.props.cards,
 			key: Object.keys(this.props.cards)[this.state.currentCard]
 		});
@@ -93,10 +95,10 @@ class Fcards extends Component{
 					{this.state.pop ? (
 					   	<Card eng = {this.state.key}
     				 		img = {this.props.cards[this.state.key]}
-    				 		practice = {this.state.isPractice}
+    				 		isPractice = {this.state.isPractice}
     				 		prevCard = {this.ShowPrevCard}
     				 		nextCard = {this.ShowNextCard}
-							closew = {this.closebutton} />) : null}
+							closeCar = {this.closeCar} />) : null}
 				</Col>
    			</Row>
 		);

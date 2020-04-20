@@ -16,13 +16,13 @@ class Search extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Function to store user input changes
   handleChange(event) {
     event.preventDefault();
     this.setState({value: event.target.value.toLowerCase()});
   }
 
-  
-
+  // Function on submitting user input
   handleSubmit(event) {
     event.preventDefault();
     axios({
@@ -50,37 +50,6 @@ class Search extends Component {
                           <Button color="primary" onClick={this.handleSubmit}>Translate</Button>
                       </InputGroupAddon>
                   </InputGroup>
-                  {/*
-                  <div class = "Translater-container">
-                      <div class = "translater-left-container">
-                          <div class = "English">
-                            <textarea class = "English-input" type="text" value={this.state.value} onChange={this.handleChange} placeholder = "Enter English here..."></textarea>
-                          </div>
-                      </div>
-                      <div class = "translater-right-container">
-                        <div class = "sign">
-
-                        <div class = "Sign-output">
-                          {this.state.result !== undefined ? (
-                              <div id="result">
-                                  {Object.keys(this.state.result).forEach((key) => (
-                                      <img src={this.state.result[key]} />
-                                  ))}
-                              </div>
-                            ) : ('Translation result will appear here...')}
-                        </div>
-
-
-
-                        </div>
-                      </div>
-                  </div>
-                  <div class = "clear"></div>
-                  <div class = "translate-button">
-                    <form onSubmit={this.handleSubmit}>
-                      <input class = "translate" type="submit" value="Translate" />
-                    </form>
-                  </div>*/}
               </Container>
               <Container>
                   {this.state.result !== undefined ? (

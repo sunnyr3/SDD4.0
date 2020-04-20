@@ -17,16 +17,11 @@
     position: relative;
 }
 
-.closewindow {
-    color: Black;
-    float: right;
+.close-view-btn {
+    position: absolute;
+    right: 0;
+    padding: 2px 5px;
 }
-
-.closewindow:hover {
-    color: cyan;
-    cursor: pointer;
-}
-
 
 /*div for the tutorial flashcard*/
 .catd-content {
@@ -34,7 +29,6 @@
     float: left;
 
 }
-
 
 .card-img {                 /*image of sign language*/
     display: block;
@@ -44,6 +38,15 @@
     padding: 1em;
 }
 
+/* For practice section */
+.practice-input {
+    width: 70%;
+    margin-left: 70px;
+}
+
+.alert {
+    margin-bottom: 5px;
+}
 
 .card-eng{                  /*english explanation part for card*/
     background-color: gray;
@@ -67,32 +70,12 @@
     transition: 0.3s;
 }
 
-
-
-.b1 {                         /*b1: prev botton*/
-    display: inline-block;
-    margin-right: 0.5em;
-    cursor: pointer;
-    padding: 10px 24px;
-    background: $background;
-    color: #444;
-    transition: 0.2s;
-  
-    &:hover {
-        background: darken($background, 10%);
-    }
+.paginate-btn {
+    background-color: #80ced6;
+    border: 0px;
 }
 
-.b2 {                         /*b2: next botton*/
-    display: inline-block;
-    margin-left: 0.5em;
-    cursor: pointer;
-    padding: 10px 24px;
-    background: $background;
-    color: #444;
-    transition: 0.2s;
-  
-    &:hover {
-        background: darken($background, 10%);
-    }
+.paginate-btn:hover {
+    background-color: #42969e;
+    border: 0px;
 }
